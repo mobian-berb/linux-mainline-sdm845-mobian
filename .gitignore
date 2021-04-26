@@ -36,7 +36,6 @@
 *.mod.c
 *.o
 *.o.*
-*.patch
 *.s
 *.so
 *.so.dbg
@@ -73,11 +72,6 @@ modules.order
 /*.spec
 
 #
-# Debian directory (make deb-pkg)
-#
-/debian/
-
-#
 # Snap directory (make snap-pkg)
 #
 /snap/
@@ -107,10 +101,6 @@ modules.order
 
 # stgit generated dirs
 patches-*
-
-# quilt's files
-patches
-series
 
 # ctags files
 tags
