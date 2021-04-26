@@ -1,0 +1,27 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Fri, 3 Dec 2021 20:20:23 +0000
+Subject: [PATCH 59/79] arm64: dts: pmi8998: add rradc node
+
+Add the Round Robin ADC found in the PMI8998 PMIC.
+
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+index e33f11b..1a3e994 100644
+--- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+@@ -51,10 +51,8 @@ pmi8998_fg: fuel-gauge@4000 {
+ 		};
+ 
+ 		pmi8998_rradc: rradc@4500 {
+-			compatible = "qcom,rradc";
++			compatible = "qcom,pmi8998-rradc";
+ 			reg = <0x4500>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+ 			#io-channel-cells = <1>;
+ 
+ 			status = "disabled";
