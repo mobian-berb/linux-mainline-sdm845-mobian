@@ -1,0 +1,30 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Fri, 26 Nov 2021 17:23:31 +0000
+Subject: [PATCH 64/79] smb2: expose psy online property
+
+---
+ drivers/power/supply/qcom_smb2.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/power/supply/qcom_smb2.c b/drivers/power/supply/qcom_smb2.c
+index 228bdc4..7482404 100644
+--- a/drivers/power/supply/qcom_smb2.c
++++ b/drivers/power/supply/qcom_smb2.c
+@@ -364,6 +364,7 @@ static enum power_supply_property smb2_properties[] = {
+ 	POWER_SUPPLY_PROP_CURRENT_NOW,
+ 	POWER_SUPPLY_PROP_VOLTAGE_NOW,
+ 	POWER_SUPPLY_PROP_STATUS,
++	POWER_SUPPLY_PROP_ONLINE,
+ 	POWER_SUPPLY_PROP_USB_TYPE,
+ };
+ 
+@@ -740,6 +741,9 @@ static int smb2_get_property(struct power_supply *psy,
+ 	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+ 		error = smb2_get_voltage(chip, &val->intval);
+ 		break;
++	case POWER_SUPPLY_PROP_ONLINE:
++		error = smb2_get_prop_usb_online(chip, &val->intval);
++		break;
+ 	case POWER_SUPPLY_PROP_STATUS:
+ 		error = smb2_get_prop_status(chip, &val->intval);
+ 		break;

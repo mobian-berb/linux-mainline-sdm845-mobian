@@ -1,0 +1,101 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Tue, 10 Aug 2021 09:03:10 +0100
+Subject: [PATCH 28/79] HACK: drm/msm: prevent active/idle transition
+ thrashing
+
+Rework the new devfreq tuning to prevent thrashing between active/idle
+gpu states which can cause instability on some devices.
+
+This should be resolved properly by CPR.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c |  3 ++-
+ drivers/gpu/drm/msm/msm_gpu.h         |  4 ++--
+ drivers/gpu/drm/msm/msm_gpu_devfreq.c | 16 +++++++++++++---
+ 3 files changed, 17 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+index 71e52b2..7a0bdca 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+@@ -139,6 +139,8 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp)
+ 		return;
+ 	}
+ 
++	dev_pm_opp_set_opp(&gpu->pdev->dev, opp);
++
+ 	gmu_write(gmu, REG_A6XX_GMU_DCVS_ACK_OPTION, 0);
+ 
+ 	gmu_write(gmu, REG_A6XX_GMU_DCVS_PERF_SETTING,
+@@ -158,7 +160,6 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp)
+ 	if (ret)
+ 		dev_err(gmu->dev, "GMU set GPU frequency error: %d\n", ret);
+ 
+-	dev_pm_opp_set_opp(&gpu->pdev->dev, opp);
+ 	pm_runtime_put(gmu->dev);
+ }
+ 
+diff --git a/drivers/gpu/drm/msm/msm_gpu.h b/drivers/gpu/drm/msm/msm_gpu.h
+index 48ea2de..3750418 100644
+--- a/drivers/gpu/drm/msm/msm_gpu.h
++++ b/drivers/gpu/drm/msm/msm_gpu.h
+@@ -99,8 +99,8 @@ struct msm_gpu_devfreq {
+ 	/** time: Time of last sampling period. */
+ 	ktime_t time;
+ 
+-	/** idle_time: Time of last transition to idle: */
+-	ktime_t idle_time;
++	/** transition_time: Time of last transition between idle/active: */
++	ktime_t transition_time;
+ 
+ 	/**
+ 	 * idle_freq:
+diff --git a/drivers/gpu/drm/msm/msm_gpu_devfreq.c b/drivers/gpu/drm/msm/msm_gpu_devfreq.c
+index 384e90c..a78fb34 100644
+--- a/drivers/gpu/drm/msm/msm_gpu_devfreq.c
++++ b/drivers/gpu/drm/msm/msm_gpu_devfreq.c
+@@ -176,7 +176,7 @@ void msm_devfreq_active(struct msm_gpu *gpu)
+ 	 */
+ 	mutex_lock(&df->devfreq->lock);
+ 
+-	idle_time = ktime_to_ms(ktime_sub(ktime_get(), df->idle_time));
++	idle_time = ktime_to_ms(ktime_sub(ktime_get(), df->transition_time));
+ 
+ 	/*
+ 	 * If we've been idle for a significant fraction of a polling
+@@ -187,7 +187,7 @@ void msm_devfreq_active(struct msm_gpu *gpu)
+ 		target_freq *= 2;
+ 	}
+ 
+-	df->idle_freq = 0;
++	df->transition_time = ktime_get();;
+ 
+ 	msm_devfreq_target(&gpu->pdev->dev, &target_freq, 0);
+ 
+@@ -207,6 +207,16 @@ static void msm_devfreq_idle_work(struct kthread_work *work)
+ 			struct msm_gpu_devfreq, idle_work.work);
+ 	struct msm_gpu *gpu = container_of(df, struct msm_gpu, devfreq);
+ 	unsigned long idle_freq, target_freq = 0;
++	unsigned int active_time;
++
++	active_time = ktime_to_ms(ktime_sub(ktime_get(), df->transition_time));
++	/*
++	 * Don't go back to idle unless we've been active for at least 30ms
++	 * to avoid thrashing.
++	 */
++	if (active_time < 30) {
++		return;
++	}
+ 
+ 	/*
+ 	 * Hold devfreq lock to synchronize with get_dev_status()/
+@@ -219,7 +229,7 @@ static void msm_devfreq_idle_work(struct kthread_work *work)
+ 	if (gpu->clamp_to_idle)
+ 		msm_devfreq_target(&gpu->pdev->dev, &target_freq, 0);
+ 
+-	df->idle_time = ktime_get();
++	df->transition_time = ktime_get();
+ 	df->idle_freq = idle_freq;
+ 
+ 	mutex_unlock(&df->devfreq->lock);

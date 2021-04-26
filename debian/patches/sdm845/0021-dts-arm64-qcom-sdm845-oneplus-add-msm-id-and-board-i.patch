@@ -1,0 +1,43 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Thu, 30 Sep 2021 12:32:00 +0100
+Subject: [PATCH 24/79] dts: arm64: qcom: sdm845-oneplus-*: add msm-id and
+ board-id
+
+The msm-id and board-id can be used to select the correct dtb when
+multiple are provided to the bootloader.
+
+The OnePlus 6T (fajita) seems to pick the enchilada dtb even though it
+has a different board-id.
+
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 2 ++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index 44fac57..deff743 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -11,6 +11,8 @@ / {
+ 	model = "OnePlus 6";
+ 	compatible = "oneplus,enchilada", "qcom,sdm845";
+ 	chassis-type = "handset";
++	qcom,msm-id = <0x141 0x20001>;
++	qcom,board-id = <8 0 17819 22>;
+ };
+ 
+ &display_panel {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+index b63ebc4..78a0b99 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+@@ -11,6 +11,8 @@ / {
+ 	model = "OnePlus 6T";
+ 	compatible = "oneplus,fajita", "qcom,sdm845";
+ 	chassis-type = "handset";
++	qcom,msm-id = <0x141 0x20001>;
++	qcom,board-id = <8 0 18801 41>;
+ };
+ 
+ &display_panel {
