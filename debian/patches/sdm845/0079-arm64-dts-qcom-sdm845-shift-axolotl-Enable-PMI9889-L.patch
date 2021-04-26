@@ -1,0 +1,66 @@
+From: Dylan Van Assche <me@dylanvanassche.be>
+Date: Sun, 8 May 2022 14:00:14 +0200
+Subject: [PATCH 082/108] arm64: dts: qcom: sdm845-shift-axolotl: Enable
+ PMI9889 LPG leds
+
+Enables the RGB notification LED on the SHIFT 6mq (axolotl) with
+the Qualcomm Light Pulse Generator bindings by Bjorn Andersson [1].
+Tested these changes on the SHIFT 6mq with the v14 patchset.
+
+[1] https://patches.linaro.org/project/linux-leds/patch/20220303214300.59468-1-bjorn.andersson@linaro.org/
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 29 +++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index ad71140..5604c4d 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -2,11 +2,13 @@
+ /*
+  * Copyright (c) 2022, Alexander Martinz <amartinz@shiftphones.com>
+  * Copyright (c) 2022, Caleb Connolly <caleb@connolly.tech>
++ * Copyright (c) 2022, Dylan Van Assche <me@dylanvanassche.be>
+  */
+ 
+ /dts-v1/;
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sdm845.dtsi"
+ #include "pm8998.dtsi"
+@@ -555,6 +557,33 @@ &pmi8998_charger {
+ 	monitored-battery = <&battery>;
+ };
+ 
++&pmi8998_lpg {
++	status = "okay";
++
++	multi-led {
++		color = <LED_COLOR_ID_RGB>;
++		function = LED_FUNCTION_STATUS;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		led@3 {
++			reg = <3>;
++			color = <LED_COLOR_ID_BLUE>;
++		};
++
++		led@4 {
++			reg = <4>;
++			color = <LED_COLOR_ID_GREEN>;
++		};
++
++		led@5 {
++			reg = <5>;
++			color = <LED_COLOR_ID_RED>;
++		};
++	};
++};
++
+ &qup_uart9_default {
+ 	pinconf-rx {
+ 		pins = "gpio5";
