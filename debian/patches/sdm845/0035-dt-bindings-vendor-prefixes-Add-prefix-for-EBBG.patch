@@ -1,0 +1,25 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Fri, 6 May 2022 16:43:55 +0530
+Subject: [PATCH 038/108] dt-bindings: vendor-prefixes: Add prefix for EBBG
+
+Add a prefix for EBBG. They manufacture displays which are used in some
+Xiaomi phones, but I could not find much details about the company.
+
+Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 08f890e..e85ddc7 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -350,6 +350,8 @@ patternProperties:
+     description: Embedded Artists AB
+   "^ebang,.*":
+     description: Zhejiang Ebang Communication Co., Ltd
++  "^ebbg,.*":
++    description: EBBG
+   "^ebs-systart,.*":
+     description: EBS-SYSTART GmbH
+   "^ebv,.*":

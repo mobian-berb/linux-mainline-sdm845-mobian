@@ -1,0 +1,27 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Mon, 23 May 2022 15:35:36 +0530
+Subject: [PATCH 091/108] Revert "i2c: qcom-geni: Use dev_err_probe() for GPI
+ DMA error"
+
+This reverts commit c60bd968c74749a85c71dfed5fabd3e36d487d54.
+---
+ drivers/i2c/busses/i2c-qcom-geni.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
+index 906df87..f53f7cb 100644
+--- a/drivers/i2c/busses/i2c-qcom-geni.c
++++ b/drivers/i2c/busses/i2c-qcom-geni.c
+@@ -842,8 +842,10 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 		/* FIFO is disabled, so we can only use GPI DMA */
+ 		gi2c->gpi_mode = true;
+ 		ret = setup_gpi_dma(gi2c);
+-		if (ret)
+-			return dev_err_probe(dev, ret, "Failed to setup GPI DMA mode\n");
++		if (ret) {
++			dev_err(dev, "Failed to setup GPI DMA mode:%d ret\n", ret);
++			return ret;
++		}
+ 
+ 		dev_dbg(dev, "Using GPI DMA mode for I2C\n");
+ 	} else {

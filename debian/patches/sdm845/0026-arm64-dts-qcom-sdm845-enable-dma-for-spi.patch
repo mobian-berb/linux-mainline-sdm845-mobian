@@ -1,0 +1,24 @@
+From: Vinod Koul <vkoul@kernel.org>
+Date: Mon, 11 Jan 2021 20:46:51 +0530
+Subject: [PATCH 028/108] arm64: dts: qcom: sdm845: enable dma for spi
+
+Add dmas property for spi@880000 and pinconf setting so that we can use
+dma for this spi device. Also, add iommu properties for qup and spi.
+
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 7783005..41a1ac5 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -14,6 +14,7 @@
+ #include <dt-bindings/clock/qcom,videocc-sdm845.h>
+ #include <dt-bindings/dma/qcom-gpi.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/dma/qcom-gpi.h>
+ #include <dt-bindings/interconnect/qcom,osm-l3.h>
+ #include <dt-bindings/interconnect/qcom,sdm845.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
