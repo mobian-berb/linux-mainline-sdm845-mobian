@@ -1,0 +1,41 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Fri, 30 Apr 2021 09:00:42 +0530
+Subject: arm64: dts: qcom: pmi8998: introduce spmi haptics
+
+Add bindings for Qualcomm SPMI haptics on platforms using pmi8998.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+index 0fef5f1..c2c0c1c 100644
+--- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+@@ -1,4 +1,5 @@
+ // SPDX-License-Identifier: GPL-2.0
++#include <dt-bindings/input/qcom,spmi-haptics.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/spmi/spmi.h>
+ 
+@@ -53,5 +54,19 @@ pmi8998_wled: leds@d800 {
+ 			status = "disabled";
+ 		};
+ 
++		pmi8998_haptics: haptics@c000 {
++			compatible = "qcom,pmi8998-haptics", "qcom,spmi-haptics";
++			reg = <0xc000>;
++
++			interrupts = <0x3 0xc0 0x0 IRQ_TYPE_EDGE_BOTH>,
++				     <0x3 0xc0 0x1 IRQ_TYPE_EDGE_BOTH>;
++			interrupt-names = "short", "play";
++
++			qcom,wave-shape = <HAP_WAVE_SINE>;
++			qcom,play-mode = <HAP_PLAY_BUFFER>;
++			qcom,brake-pattern = <0x3 0x3 0x2 0x1>;
++
++			status = "disabled";
++		};
+ 	};
+ };

@@ -1,0 +1,21 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Tue, 16 Nov 2021 05:14:27 +0000
+Subject: arm64: dts: qcom: sdm845-xiaomi-equuleus: fix dtb warning
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-equuleus.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-equuleus.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-equuleus.dts
+index 14f94d5..15d6308 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-equuleus.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-equuleus.dts
+@@ -45,7 +45,7 @@ chosen {
+ 		stdout-path = "display0";
+ 
+         /* hack: Use framebuffer setup by the bootloader for simplefb. */
+-		framebuffer0: framebuffer@0x9d400000 {
++		framebuffer0: framebuffer@9d400000 {
+ 			compatible = "simple-framebuffer";
+ 			reg = <0x0 0x9d400000 0x0 (1080 * 2248 * 4)>;
+ 			width = <1080>;

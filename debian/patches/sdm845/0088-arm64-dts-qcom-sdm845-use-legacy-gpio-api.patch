@@ -1,0 +1,41 @@
+From: Alexander Martinz <amartinz@shiftphones.com>
+Date: Thu, 24 Mar 2022 17:41:07 +0100
+Subject: arm64: dts: qcom: sdm845: use legacy gpio api
+
+Unbreak touch after 4d8e9bd3df65fb2978276bfe8c25150dfa3c0e92.
+Display requires a power cycle to get touch working.
+
+Needs more investigation and a proper fix to get both Poco F1 and
+axolotl working.
+
+Signed-off-by: Alexander Martinz <amartinz@shiftphones.com>
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 847f621..a4739a0 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -470,6 +470,10 @@ zap-shader {
+ &i2c5 {
+ 	status="okay";
+ 
++	dmas =  <&gpi_dma1 0 6 QCOM_GPI_I2C>,
++			<&gpi_dma1 1 6 QCOM_GPI_I2C>;
++	dma-names = "tx", "rx";
++
+ 	touchscreen@38 {
+ 		compatible = "focaltech,fts8719";
+ 		reg = <0x38>;
+@@ -483,8 +487,8 @@ touchscreen@38 {
+ 		pinctrl-0 = <&ts_int_active &ts_reset_active>;
+ 		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+ 
+-		reset-gpio = <&tlmm 99 GPIO_ACTIVE_HIGH>;
+-		irq-gpio = <&tlmm 125 GPIO_TRANSITORY>;
++		focaltech,reset-gpio = <&tlmm 99 GPIO_ACTIVE_HIGH>;
++		focaltech,irq-gpio = <&tlmm 125 GPIO_TRANSITORY>;
+ 		touchscreen-size-x = <1080>;
+ 		touchscreen-size-y = <2160>;
+ 		focaltech,max-touch-number = <5>;

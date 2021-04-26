@@ -1,0 +1,26 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Sun, 23 Jan 2022 17:38:08 +0000
+Subject: dt-bindings: vendor-prefixes: add vendor prefix for SHIFT
+
+Add SHIFT vendor prefix, SHIFT make various devices such as the SHIF6mq
+phone.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 294093d..57dfe37 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1064,6 +1064,8 @@ patternProperties:
+     description: SGX Sensortech
+   "^sharp,.*":
+     description: Sharp Corporation
++  "^shift,.*":
++    description: SHIFT GmbH
+   "^shimafuji,.*":
+     description: Shimafuji Electric, Inc.
+   "^shiratech,.*":

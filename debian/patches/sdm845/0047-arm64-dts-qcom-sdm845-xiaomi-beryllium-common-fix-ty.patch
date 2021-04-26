@@ -1,0 +1,22 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Fri, 26 Nov 2021 20:07:02 +0530
+Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium-common: fix typo in
+ display_panel node
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index 9a456d1..20ff8b3 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -219,7 +219,7 @@ &dsi0 {
+ 	display_panel: panel@0 {
+ 		status = "disabled";
+ 		reg = <0>;
+-		vddi0-supply = <&vreg_l14a_1p8>;
++		vddio-supply = <&vreg_l14a_1p8>;
+ 		vddpos-supply = <&lab>;
+ 		vddneg-supply = <&ibb>;
+ 

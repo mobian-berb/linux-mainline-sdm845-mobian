@@ -1,0 +1,25 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Mon, 6 Dec 2021 12:44:49 +0530
+Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium-common: enable ipa
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index e40b478..a4ea8a0d 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -297,6 +297,12 @@ &mss_pil {
+ 	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
+ };
+ 
++&ipa {
++	status = "okay";
++	memory-region = <&ipa_fw_mem>;
++	firmware-name = "qcom/sdm845/beryllium/ipa_fws.mbn";
++};
++
+ &pm8998_gpio {
+ 	vol_up_pin_a: vol-up-active {
+ 		pins = "gpio6";

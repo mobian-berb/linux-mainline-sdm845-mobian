@@ -1,0 +1,62 @@
+From: Vinod Koul <vkoul@kernel.org>
+Date: Fri, 30 Apr 2021 09:50:23 +0530
+Subject: soc: qcom: geni: move struct geni_wrapper to header
+
+I2C geni driver needs to access struct geni_wrapper, so move it to
+header.
+---
+ drivers/soc/qcom/qcom-geni-se.c | 14 --------------
+ include/linux/qcom-geni-se.h    | 15 +++++++++++++++
+ 2 files changed, 15 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+index 28a8c0d..bc9ae71 100644
+--- a/drivers/soc/qcom/qcom-geni-se.c
++++ b/drivers/soc/qcom/qcom-geni-se.c
+@@ -78,20 +78,6 @@
+  */
+ 
+ #define MAX_CLK_PERF_LEVEL 32
+-#define NUM_AHB_CLKS 2
+-
+-/**
+- * struct geni_wrapper - Data structure to represent the QUP Wrapper Core
+- * @dev:		Device pointer of the QUP wrapper core
+- * @base:		Base address of this instance of QUP wrapper core
+- * @ahb_clks:		Handle to the primary & secondary AHB clocks
+- * @to_core:		Core ICC path
+- */
+-struct geni_wrapper {
+-	struct device *dev;
+-	void __iomem *base;
+-	struct clk_bulk_data ahb_clks[NUM_AHB_CLKS];
+-};
+ 
+ static const char * const icc_path_names[] = {"qup-core", "qup-config",
+ 						"qup-memory"};
+diff --git a/include/linux/qcom-geni-se.h b/include/linux/qcom-geni-se.h
+index f567278..26aee3e 100644
+--- a/include/linux/qcom-geni-se.h
++++ b/include/linux/qcom-geni-se.h
+@@ -51,6 +51,21 @@ struct geni_icc_path {
+ 	unsigned int avg_bw;
+ };
+ 
++#define NUM_AHB_CLKS 2
++
++/**
++ * @struct geni_wrapper - Data structure to represent the QUP Wrapper Core
++ * @dev:		Device pointer of the QUP wrapper core
++ * @base:		Base address of this instance of QUP wrapper core
++ * @ahb_clks:		Handle to the primary & secondary AHB clocks
++ */
++struct geni_wrapper {
++	struct device *dev;
++	void __iomem *base;
++	struct clk_bulk_data ahb_clks[NUM_AHB_CLKS];
++	struct geni_icc_path to_core;
++};
++
+ /**
+  * struct geni_se - GENI Serial Engine
+  * @base:		Base Address of the Serial Engine's register block

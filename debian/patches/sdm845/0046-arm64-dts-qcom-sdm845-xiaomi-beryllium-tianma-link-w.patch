@@ -1,0 +1,21 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Thu, 7 Oct 2021 23:03:42 +0530
+Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium-tianma: link wled
+ backlight to tianma panel
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+index 8f46bf1..9465b488 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+@@ -7,6 +7,7 @@
+ &display_panel {
+ 	status = "okay";
+ 	compatible = "tianma,fhd-video";
++	backlight = <&pmi8998_wled>;
+ };
+ 
+ &i2c14 {

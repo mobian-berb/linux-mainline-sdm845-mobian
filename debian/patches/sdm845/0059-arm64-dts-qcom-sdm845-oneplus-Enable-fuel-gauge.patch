@@ -1,0 +1,85 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Fri, 25 Dec 2020 12:57:15 +0530
+Subject: arm64: dts: qcom: sdm845-oneplus: Enable fuel gauge
+
+Add battery data and enable fuel gauge.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi   |  4 ++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 12 ++++++++++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 12 ++++++++++++
+ 3 files changed, 28 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 18ee6c6..05463b2 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -458,6 +458,10 @@ &pmi8998_rradc {
+ 	status = "okay";
+ };
+ 
++&pmi8998_fg {
++	status = "okay";
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index deff743..b00e570 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -13,6 +13,14 @@ / {
+ 	chassis-type = "handset";
+ 	qcom,msm-id = <0x141 0x20001>;
+ 	qcom,board-id = <8 0 17819 22>;
++
++	battery: battery {
++		compatible = "simple-battery";
++
++		charge-full-design-microamp-hours = <3300000>;
++		voltage-min-design-microvolt = <3400000>;
++		voltage-max-design-microvolt = <4400000>;
++	};
+ };
+ 
+ &display_panel {
+@@ -22,3 +30,7 @@ &display_panel {
+ 
+ 	reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+ };
++
++&pmi8998_fg {
++	monitored-battery = <&battery>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+index 78a0b99..c8bf880 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+@@ -13,6 +13,14 @@ / {
+ 	chassis-type = "handset";
+ 	qcom,msm-id = <0x141 0x20001>;
+ 	qcom,board-id = <8 0 18801 41>;
++
++	battery: battery {
++		compatible = "simple-battery";
++
++		charge-full-design-microamp-hours = <3700000>;
++		voltage-min-design-microvolt = <3400000>;
++		voltage-max-design-microvolt = <4400000>;
++	};
+ };
+ 
+ &display_panel {
+@@ -21,6 +29,10 @@ &display_panel {
+ 	compatible = "samsung,s6e3fc2x01";
+ };
+ 
++&pmi8998_fg {
++	monitored-battery = <&battery>;
++};
++
+ &rmi4_f12 {
+ 	touchscreen-y-mm = <148>;
+ };
