@@ -1,0 +1,31 @@
+From: Dylan Van Assche <me@dylanvanassche.be>
+Date: Sun, 8 May 2022 15:32:33 +0200
+Subject: [PATCH 083/108] arm64: dts: qcom: Add LPG to pmi8998
+
+Add PWM/LPG nodes to the PMICs currently supported by the LPG binding.
+
+Submitted upstream: https://patchwork.kernel.org/project/linux-arm-msm/patch/20220505022706.1692554-2-bjorn.andersson@linaro.org/
+---
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+index 0013660d..1524158 100644
+--- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+@@ -104,5 +104,15 @@ pmi8998_haptics: haptics@c000 {
+ 
+ 			status = "disabled";
+ 		};
++
++		pmi8998_lpg: led-controller {
++			compatible = "qcom,pmi8998-lpg";
++
++			#address-cells = <1>;
++			#size-cells = <0>;
++			#pwm-cells = <2>;
++
++			status = "disabled";
++		};
+ 	};
+ };

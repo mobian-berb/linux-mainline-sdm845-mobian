@@ -1,0 +1,27 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Fri, 10 Jun 2022 19:44:07 +0100
+Subject: [PATCH 098/108] power: supply: pmi8998_charger: actually do call
+ changed in interrupt context
+
+All the IRQ handlers are registered as threaded handlers, so it's safe
+to call power_supply_changed()
+
+Without this call, userspace is never notified when we unplug the
+charger, oops
+---
+ drivers/power/supply/qcom_pmi8998_charger.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/power/supply/qcom_pmi8998_charger.c b/drivers/power/supply/qcom_pmi8998_charger.c
+index 43185538..4bbaeab 100644
+--- a/drivers/power/supply/qcom_pmi8998_charger.c
++++ b/drivers/power/supply/qcom_pmi8998_charger.c
+@@ -756,6 +756,8 @@ irqreturn_t smb2_handle_usb_plugin(int irq, void *data)
+ {
+ 	struct smb2_chip *chip = data;
+ 
++	power_supply_changed(chip->chg_psy);
++
+ 	schedule_delayed_work(&chip->status_change_work,
+ 			      msecs_to_jiffies(1000));
+ 

@@ -1,0 +1,74 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Sun, 17 Apr 2022 03:06:18 +0530
+Subject: [PATCH 042/108] arm64: dts: qcom: sdm845-xiaomi-beryllium-common:
+ update display_panel
+
+---
+ .../dts/qcom/sdm845-xiaomi-beryllium-common.dtsi   | 38 ++++++++++++++++++++--
+ 1 file changed, 35 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index 25e96ea..41e322e 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -221,18 +221,24 @@ &dsi0 {
+ 	status = "okay";
+ 	vdda-supply = <&vreg_l26a_1p2>;
+ 
++	#address-cells = <1>;
++	#size-cells = <0>;
++
+ 	display_panel: panel@0 {
+ 		status = "disabled";
+ 		reg = <0>;
++
+ 		vddio-supply = <&vreg_l14a_1p8>;
+ 		vddpos-supply = <&lab>;
+ 		vddneg-supply = <&ibb>;
+ 
+-		#address-cells = <1>;
+-		#size-cells = <0>;
++		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+ 
+ 		backlight = <&pmi8998_wled>;
+-		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
++
++		pinctrl-names = "default", "sleep";
++		pinctrl-0 = <&sde_dsi_active>;
++		pinctrl-1 = <&sde_dsi_suspend>;
+ 
+ 		port {
+ 			panel_in_0: endpoint {
+@@ -477,6 +483,32 @@ sdc2_card_det_n: sd-card-det-n {
+ 		bias-pull-up;
+ 	};
+ 
++	sde_dsi_active: sde_dsi_active {
++		mux {
++			pins = "gpio6", "gpio10";
++			function = "gpio";
++		};
++
++		config {
++			pins = "gpio6", "gpio10";
++			drive-strength = <8>;  /* 8 mA */
++			bias-disable = <0>;  /* no pull */
++		};
++	};
++
++	sde_dsi_suspend: sde_dsi_suspend {
++		mux {
++			pins = "gpio6", "gpio10";
++			function = "gpio";
++		};
++
++		config {
++			pins = "gpio6", "gpio10";
++			drive-strength = <2>;  /* 2 mA */
++			bias-pull-down;  /* PULL DOWN */
++		};
++	};
++
+ 	wcd_intr_default: wcd_intr_default {
+ 		pins = <54>;
+ 		function = "gpio";
