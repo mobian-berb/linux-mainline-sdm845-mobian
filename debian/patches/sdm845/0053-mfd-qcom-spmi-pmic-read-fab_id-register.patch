@@ -1,0 +1,64 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Tue, 30 Nov 2021 13:24:54 +0000
+Subject: [PATCH 56/79] mfd: qcom-spmi-pmic: read fab_id register
+
+Some PMICs include a register exposing which chip fab the PMIC was
+produced in, this can be used to calibrate some ADC results.
+
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+---
+ drivers/mfd/qcom-spmi-pmic.c | 8 +++++++-
+ include/soc/qcom/qcom-pmic.h | 7 +++++++
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
+index 1e4a44b..af387e0 100644
+--- a/drivers/mfd/qcom-spmi-pmic.c
++++ b/drivers/mfd/qcom-spmi-pmic.c
+@@ -19,7 +19,7 @@
+ #define PMIC_REV4		0x103
+ #define PMIC_TYPE		0x104
+ #define PMIC_SUBTYPE		0x105
+-
++#define PMIC_FAB_ID		0x1f2
+ #define PMIC_TYPE_VALUE		0x51
+ 
+ static const struct of_device_id pmic_spmi_id_table[] = {
+@@ -95,6 +95,12 @@ static void pmic_spmi_load_revid(struct regmap *map, struct device *dev,
+ 	if (ret < 0)
+ 		return;
+ 
++	if (pmic->subtype == PMI8998_SUBTYPE || pmic->subtype == PM660_SUBTYPE) {
++		ret = regmap_read(map, PMIC_FAB_ID, &pmic->fab_id);
++		if (ret < 0)
++			return;
++	}
++
+ 	/*
+ 	 * In early versions of PM8941 and PM8226, the major revision number
+ 	 * started incrementing from 0 (eg 0 = v1.0, 1 = v2.0).
+diff --git a/include/soc/qcom/qcom-pmic.h b/include/soc/qcom/qcom-pmic.h
+index f76d089..f4b1844 100644
+--- a/include/soc/qcom/qcom-pmic.h
++++ b/include/soc/qcom/qcom-pmic.h
+@@ -34,6 +34,12 @@
+ #define PM8150C_SUBTYPE		0x26
+ #define SMB2351_SUBTYPE		0x29
+ 
++#define PMI8998_FAB_ID_SMIC	0x11
++#define PMI8998_FAB_ID_GF	0x30
++
++#define PM660_FAB_ID_GF		0x0
++#define PM660_FAB_ID_TSMC	0x2
++#define PM660_FAB_ID_MX		0x3
+ 
+ struct qcom_spmi_pmic {
+ 	unsigned int type;
+@@ -41,6 +47,7 @@ struct qcom_spmi_pmic {
+ 	unsigned int major;
+ 	unsigned int minor;
+ 	unsigned int rev2;
++	unsigned int fab_id;
+ 	char *name;
+ };
+ 

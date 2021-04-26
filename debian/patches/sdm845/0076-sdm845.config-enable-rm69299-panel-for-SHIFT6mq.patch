@@ -1,0 +1,22 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Mon, 20 Dec 2021 12:42:31 +0000
+Subject: [PATCH 79/79] sdm845.config: enable rm69299 panel for SHIFT6mq
+
+---
+ arch/arm64/configs/sdm845.config | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/configs/sdm845.config b/arch/arm64/configs/sdm845.config
+index 85a376c..d08b171 100644
+--- a/arch/arm64/configs/sdm845.config
++++ b/arch/arm64/configs/sdm845.config
+@@ -17,6 +17,9 @@ CONFIG_TOUCHSCREEN_FTS=m
+ CONFIG_QCOM_GPI_DMA=m
+ CONFIG_SND_SOC_TAS2559=m
+ 
++# SHIFT6mq
++CONFIG_DRM_PANEL_VISIONOX_RM69299=y
++
+ # SOC
+ CONFIG_NR_CPUS=8
+ CONFIG_SCSI_UFS_QCOM=y
