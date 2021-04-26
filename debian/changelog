@@ -1,0 +1,5 @@
+linux-5.17-sdm845 (5.17+sdm845-1) UNRELEASED; urgency=medium
+
+  * Initial 5.17 release
+
+ -- Arnaud Ferraris <arnaud.ferraris@gmail.com>  Thu, 31 Mar 2022 00:32:45 +0200
