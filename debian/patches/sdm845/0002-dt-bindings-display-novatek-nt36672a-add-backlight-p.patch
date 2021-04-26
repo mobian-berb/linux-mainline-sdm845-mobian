@@ -1,0 +1,32 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Sun, 27 Mar 2022 05:48:24 +0530
+Subject: [PATCH 004/108] dt-bindings: display: novatek,nt36672a: add
+ backlight property
+
+Add backlight property and update example to include it.
+
+Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
+---
+ Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+index 563766d..41ee315 100644
+--- a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+@@ -46,6 +46,7 @@ properties:
+ 
+   reg: true
+   port: true
++  backlight: true
+ 
+ required:
+   - compatible
+@@ -73,6 +74,7 @@ examples:
+             vddpos-supply = <&lab>;
+             vddneg-supply = <&ibb>;
+ 
++            backlight = <&pmi8998_wled>;
+             reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+ 
+             port {
