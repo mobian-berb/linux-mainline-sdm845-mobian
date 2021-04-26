@@ -1,0 +1,56 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Sat, 16 Oct 2021 17:16:53 +0100
+Subject: arm64: dts: sdm845-oneplus: enable smb2
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi   | 5 +++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 4 ++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 4 ++++
+ 3 files changed, 13 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 29a348af..9e9f1f3 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -462,6 +462,11 @@ &pmi8998_rradc {
+ 
+ &pmi8998_fg {
+ 	status = "okay";
++	power-supplies = <&pmi8998_smb2>;
++};
++
++&pmi8998_smb2 {
++	status = "okay";
+ };
+ 
+ &q6afedai {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index a9d33cf..2862ae7 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -35,6 +35,10 @@ &pmi8998_fg {
+ 	monitored-battery = <&battery>;
+ };
+ 
++&pmi8998_smb2 {
++	monitored-battery = <&battery>;
++};
++
+ &i2c4 {
+ 	status = "okay";
+ 	clock-frequency = <400000>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+index 8e672f1..9a19443 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+@@ -61,6 +61,10 @@ &pmi8998_fg {
+ 	monitored-battery = <&battery>;
+ };
+ 
++&pmi8998_smb2 {
++	monitored-battery = <&battery>;
++};
++
+ &rmi4_f12 {
+ 	touchscreen-y-mm = <148>;
+ };

@@ -1,0 +1,31 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Thu, 3 Jun 2021 16:25:04 +0530
+Subject: input: nt36xxx: fix pressure not being reported for 1 or 2 finger
+ taps
+
+Fixes issues in TS LIB based touchscreen applications such pmOS osk-sdl.
+---
+ drivers/input/touchscreen/nt36xxx.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/input/touchscreen/nt36xxx.c b/drivers/input/touchscreen/nt36xxx.c
+index 671a42d..420e11c 100644
+--- a/drivers/input/touchscreen/nt36xxx.c
++++ b/drivers/input/touchscreen/nt36xxx.c
+@@ -438,11 +438,11 @@ static void nt36xxx_report(struct nt36xxx_i2c *ts)
+ 				obj->tm = 1;
+ 
+ 			obj->z = point[ppos + 5];
+-			if (i < 2) {
+-				obj->z += point[i + 63] << 8;
+-				if (obj->z > TOUCH_MAX_PRESSURE)
+-					obj->z = TOUCH_MAX_PRESSURE;
+-			}
++			// if (i < 2) {
++			// 	obj->z += point[i + 63] << 8;
++			// 	if (obj->z > TOUCH_MAX_PRESSURE)
++			// 		obj->z = TOUCH_MAX_PRESSURE;
++			// }
+ 
+ 			if (obj->z == 0)
+ 				obj->z = 1;

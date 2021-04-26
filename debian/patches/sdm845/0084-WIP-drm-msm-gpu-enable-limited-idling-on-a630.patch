@@ -1,0 +1,76 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Tue, 15 Feb 2022 15:41:30 +0000
+Subject: WIP: drm/msm/gpu: enable limited idling on a630
+
+The a630 has a bug which causes instability and GPU crashes when
+transitioning between idle/active states too rapidly, to work around
+this idle clamping was disabled, so the GPU would never truly idle, only
+sit at it's lowest frequency.
+
+Re-enable idling, but limit how often the GPU can idle to prevent
+instability. This allows the GPU core to idle at 0Hz which should offer
+some power savings.
+
+Fixes: 5ca6779d2f18 ("drm/msm/devfreq: Restrict idle clamping to a618 for now")
+---
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c |  2 +-
+ drivers/gpu/drm/msm/msm_gpu.h         |  2 +-
+ drivers/gpu/drm/msm/msm_gpu_devfreq.c | 16 ++++++++++++++--
+ 3 files changed, 16 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+index 17cfad64..de8841e 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+@@ -1848,7 +1848,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+ 	 * to cause power supply issues:
+ 	 */
+ 	if (info && (info->revn == 618))
+-		gpu->clamp_to_idle = true;
++		gpu->clamp_to_idle_no_delay = true;
+ 
+ 	a6xx_llc_slices_init(pdev, a6xx_gpu);
+ 
+diff --git a/drivers/gpu/drm/msm/msm_gpu.h b/drivers/gpu/drm/msm/msm_gpu.h
+index 92aa1e9..e5630a3 100644
+--- a/drivers/gpu/drm/msm/msm_gpu.h
++++ b/drivers/gpu/drm/msm/msm_gpu.h
+@@ -248,7 +248,7 @@ struct msm_gpu {
+ 	struct msm_gpu_state *crashstate;
+ 
+ 	/* Enable clamping to idle freq when inactive: */
+-	bool clamp_to_idle;
++	bool clamp_to_idle_no_delay;
+ 
+ 	/* True if the hardware supports expanded apriv (a650 and newer) */
+ 	bool hw_apriv;
+diff --git a/drivers/gpu/drm/msm/msm_gpu_devfreq.c b/drivers/gpu/drm/msm/msm_gpu_devfreq.c
+index 1264161..ab10791 100644
+--- a/drivers/gpu/drm/msm/msm_gpu_devfreq.c
++++ b/drivers/gpu/drm/msm/msm_gpu_devfreq.c
+@@ -262,11 +262,23 @@ static void msm_devfreq_idle_work(struct kthread_work *work)
+ 	struct msm_gpu_devfreq *df = container_of(work,
+ 			struct msm_gpu_devfreq, idle_work.work);
+ 	struct msm_gpu *gpu = container_of(df, struct msm_gpu, devfreq);
++	unsigned int idle_time = ktime_to_ms(ktime_sub(ktime_get(), df->idle_time));
++
++	/*
++	 * a630 has a bug where rapidly switching between idle and active
++	 * causes GPU instability so limit how often it can idle.
++	 */
++	if (!gpu->clamp_to_idle_no_delay && idle_time < 100) {
++		//dev_info(&gpu->pdev->dev,
++		//	"Not idling GPU, too soon since last idle\n");
++		return;
++	}
++
++	//dev_info(&gpu->pdev->dev, "Idling GPU, was active for %u ms\n", idle_time);
+ 
+ 	df->idle_time = ktime_get();
+ 
+-	if (gpu->clamp_to_idle)
+-		dev_pm_qos_update_request(&df->idle_freq, 0);
++	dev_pm_qos_update_request(&df->idle_freq, 0);
+ }
+ 
+ void msm_devfreq_idle(struct msm_gpu *gpu)

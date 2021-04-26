@@ -1,0 +1,94 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Mon, 21 Mar 2022 11:43:50 +0000
+Subject: arm64: dts: qcom: sdm845-oneplus: add tri-state-key
+
+The tri-state-key is a 3-state mute slider found on the OnePlus 6,
+Android maps the states to "mute", "vibrate" and "ring", expose them as
+generic switch events so that they can be configured by userspace.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 47 +++++++++++++++++++++-
+ 1 file changed, 45 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index a49f76c0..c382878 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -8,6 +8,7 @@
+ /dts-v1/;
+ 
+ #include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include <dt-bindings/sound/qcom,q6afe.h>
+ #include <dt-bindings/sound/qcom,q6asm.h>
+@@ -29,7 +30,7 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+-	gpio-keys {
++	volume-keys {
+ 		compatible = "gpio-keys";
+ 		label = "Volume keys";
+ 		autorepeat;
+@@ -52,6 +53,47 @@ vol-up {
+ 		};
+ 	};
+ 
++	tri-state-key {
++		compatible = "gpio-keys";
++		label = "Tri-state key";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&tri_state_key_default>;
++
++		state-top {
++			label = "Tri-state key top";
++			linux,input-type = <EV_SW>;
++			linux,code = <SW_PROG1>;
++			gpios = <&tlmm 126 GPIO_ACTIVE_HIGH>;
++			interrupt-parent = <&tlmm>;
++			interrupts = <126 IRQ_TYPE_EDGE_BOTH>;
++			debounce-interval = <50>;
++			linux,can-disable;
++		};
++
++		state-middle {
++			label = "Tri-state key middle";
++			linux,input-type = <EV_SW>;
++			linux,code = <SW_PROG2>;
++			gpios = <&tlmm 52 GPIO_ACTIVE_HIGH>;
++			interrupt-parent = <&tlmm>;
++			interrupts = <52 IRQ_TYPE_EDGE_BOTH>;
++			debounce-interval = <50>;
++			linux,can-disable;
++		};
++
++		state-bottom {
++			label = "Tri-state key bottom";
++			linux,input-type = <EV_SW>;
++			linux,code = <SW_PROG3>;
++			gpios = <&tlmm 24 GPIO_ACTIVE_HIGH>;
++			interrupt-parent = <&tlmm>;
++			interrupts = <24 IRQ_TYPE_EDGE_BOTH>;
++			debounce-interval = <50>;
++			linux,can-disable;
++		};
++	};
++
+ 	reserved-memory {
+ 		/* The rmtfs_mem needs to be guarded due to "XPU limitations"
+ 		 * it is otherwise possible for an allocation adjacent to the
+@@ -751,9 +793,10 @@ wcd_intr_default: wcd_intr_default {
+ 		drive-strength = <2>;
+ 	};
+ 
++	// The GPIOs have a hardware pullup.
+ 	tri_state_key_default: tri_state_key_default {
+ 		mux {
+-			pins = "gpio40", "gpio42", "gpio26";
++			pins = "gpio126", "gpio52", "gpio24";
+ 			function = "gpio";
+ 			drive-strength = <2>;
+ 			bias-disable;

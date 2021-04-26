@@ -1,0 +1,24 @@
+From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+Date: Wed, 28 Oct 2020 23:13:00 +0100
+Subject: dt-bindings: Add vendor prefix for Novatek Microelectronics Corp.
+
+Add prefix for Novatek Microelectronics Corp.
+
+Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 57dfe37..80e80fa 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -840,6 +840,8 @@ patternProperties:
+     description: Nokia
+   "^nordic,.*":
+     description: Nordic Semiconductor
++  "^novatek,.*":
++    description: Novatek Microelectronics Corp.
+   "^novtech,.*":
+     description: NovTech, Inc.
+   "^nutsboard,.*":

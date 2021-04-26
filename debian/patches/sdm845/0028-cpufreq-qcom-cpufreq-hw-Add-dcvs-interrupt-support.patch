@@ -1,0 +1,26 @@
+From: Thara Gopinath <thara.gopinath@linaro.org>
+Date: Mon, 9 Aug 2021 15:16:01 -0400
+Subject: cpufreq: qcom-cpufreq-hw: Add dcvs interrupt support
+
+Add interrupt support to notify the kernel of h/w initiated frequency
+throttling by LMh. Convey this to scheduler via thermal presssure
+interface.
+
+Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+---
+ drivers/cpufreq/qcom-cpufreq-hw.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+index effbb68..e3b94bb 100644
+--- a/drivers/cpufreq/qcom-cpufreq-hw.c
++++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+@@ -292,7 +292,7 @@ static void qcom_lmh_dcvs_notify(struct qcom_cpufreq_data *data)
+ 
+ 	opp = dev_pm_opp_find_freq_floor(dev, &freq_hz);
+ 	if (IS_ERR(opp) && PTR_ERR(opp) == -ERANGE)
+-		dev_pm_opp_find_freq_ceil(dev, &freq_hz);
++		opp = dev_pm_opp_find_freq_ceil(dev, &freq_hz);
+ 
+ 	throttled_freq = freq_hz / HZ_PER_KHZ;
+ 
