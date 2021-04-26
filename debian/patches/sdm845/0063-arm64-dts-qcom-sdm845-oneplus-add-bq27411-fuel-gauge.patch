@@ -1,0 +1,64 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Sun, 30 Jan 2022 20:45:03 +0000
+Subject: arm64: dts: qcom: sdm845-oneplus-* add bq27411 fuel gauge
+
+The OnePlus 6 and 6T feature a BQ27411 battery fuel gauge for measuring
+power consumption and battery stats. The "status" property is not
+connected.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi   | 8 ++++++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 4 ++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 4 ++++
+ 3 files changed, 16 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 9e9f1f3..4c91dfd 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -376,6 +376,14 @@ zap-shader {
+ 	};
+ };
+ 
++&i2c10 {
++	bq27411: battery@55 {
++		compatible = "ti,bq27411";
++		reg = <0x55>;
++		status = "ok";
++	};
++};
++
+ &i2c12 {
+ 	status = "okay";
+ 	clock-frequency = <400000>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index 2862ae7..e9cc3d1 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -39,6 +39,10 @@ &pmi8998_smb2 {
+ 	monitored-battery = <&battery>;
+ };
+ 
++&bq27411 {
++	monitored-battery = <&battery>;
++};
++
+ &i2c4 {
+ 	status = "okay";
+ 	clock-frequency = <400000>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+index 9a19443..d40115f 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+@@ -65,6 +65,10 @@ &pmi8998_smb2 {
+ 	monitored-battery = <&battery>;
+ };
+ 
++&bq27411 {
++	monitored-battery = <&battery>;
++};
++
+ &rmi4_f12 {
+ 	touchscreen-y-mm = <148>;
+ };

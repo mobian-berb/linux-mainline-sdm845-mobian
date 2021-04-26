@@ -1,0 +1,33 @@
+From: Yassine Oudjana <y.oudjana@protonmail.com>
+Date: Sat, 6 Mar 2021 13:33:43 +0400
+Subject: arm64: dts: qcom: pmi8994: Add fuel gauge
+
+Add a node for qcom,pmi8994-fg.
+
+Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+---
+ arch/arm64/boot/dts/qcom/pmi8994.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/pmi8994.dtsi b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+index 6e7c252..3927d5b 100644
+--- a/arch/arm64/boot/dts/qcom/pmi8994.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+@@ -10,6 +10,17 @@ pmic@2 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
++		pmi8994_fg: fuel-gauge@4000 {
++			compatible = "qcom,pmi8994-fg";
++			reg = <0x4000>;
++
++			interrupts = <0x2 0x40 0x4 IRQ_TYPE_EDGE_RISING>,
++				     <0x2 0x44 0x0 IRQ_TYPE_EDGE_BOTH>;
++			interrupt-names = "soc-delta", "mem-avail";
++
++			status = "disabled";
++		};
++
+ 		pmi8994_gpios: gpios@c000 {
+ 			compatible = "qcom,pmi8994-gpio", "qcom,spmi-gpio";
+ 			reg = <0xc000>;
