@@ -1,0 +1,62 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Mon, 21 Feb 2022 22:07:35 +0000
+Subject: spmi: add a helper to look up an SPMI device from a device node
+
+The helper function spmi_device_from_of() takes a device node and
+returns the SPMI device associated with it.
+This is like of_find_device_by_node but for SPMI devices.
+
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+---
+ drivers/spmi/spmi.c  | 17 +++++++++++++++++
+ include/linux/spmi.h |  2 ++
+ 2 files changed, 19 insertions(+)
+
+diff --git a/drivers/spmi/spmi.c b/drivers/spmi/spmi.c
+index b37ead9..de550b7 100644
+--- a/drivers/spmi/spmi.c
++++ b/drivers/spmi/spmi.c
+@@ -386,6 +386,23 @@ static struct bus_type spmi_bus_type = {
+ 	.uevent		= spmi_drv_uevent,
+ };
+ 
++/**
++ * spmi_device_from_of() - get the associated SPMI device from a device node
++ *
++ * @np:		device node
++ *
++ * Returns the struct spmi_device associated with a device node or NULL.
++ */
++inline struct spmi_device *spmi_device_from_of(struct device_node *np)
++{
++	struct device *dev = bus_find_device_by_of_node(&spmi_bus_type, np);
++
++	if (dev)
++		return to_spmi_device(dev);
++	return NULL;
++}
++EXPORT_SYMBOL_GPL(spmi_device_from_of);
++
+ /**
+  * spmi_controller_alloc() - Allocate a new SPMI device
+  * @ctrl:	associated controller
+diff --git a/include/linux/spmi.h b/include/linux/spmi.h
+index 729bcbf..6ee476b 100644
+--- a/include/linux/spmi.h
++++ b/include/linux/spmi.h
+@@ -7,6 +7,7 @@
+ #include <linux/types.h>
+ #include <linux/device.h>
+ #include <linux/mod_devicetable.h>
++#include <linux/of.h>
+ 
+ /* Maximum slave identifier */
+ #define SPMI_MAX_SLAVE_ID		16
+@@ -164,6 +165,7 @@ static inline void spmi_driver_unregister(struct spmi_driver *sdrv)
+ 	module_driver(__spmi_driver, spmi_driver_register, \
+ 			spmi_driver_unregister)
+ 
++inline struct spmi_device *spmi_device_from_of(struct device_node *np);
+ int spmi_register_read(struct spmi_device *sdev, u8 addr, u8 *buf);
+ int spmi_ext_register_read(struct spmi_device *sdev, u8 addr, u8 *buf,
+ 			   size_t len);

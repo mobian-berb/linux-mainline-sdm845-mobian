@@ -1,0 +1,39 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Mon, 8 Feb 2021 13:20:44 +0530
+Subject: input: touchscreen: nt36xxx: temporarily disable PM functions
+
+During touchscreen suspend, the following errors occur and after which the touchscreen wouldnt work on resume. So disable the PM functions temporarily.
+
+[16363.867191] PM: suspend entry (s2idle)
+[16363.871845] Filesystems sync: 0.004 seconds
+[16363.872858] Freezing user space processes ... (elapsed 0.002 seconds) done.
+[16363.875064] OOM killer disabled.
+[16363.875070] Freezing remaining freezable tasks ... (elapsed 0.000 seconds) done.
+[16363.875972] printk: Suspending console(s) (use no_console_suspend to debug)
+[16363.971053] gpi a00000.dma-controller: Error in Transaction
+[16363.971060] geni_i2c a98000.i2c: DMA txn failed:3
+[16364.996080] geni_i2c a98000.i2c: I2C timeout gsi flags:0 addr:0x1
+[16364.997575] nt36xxx_ts 14-0062: Cannot enter suspend!!
+[16364.997593] PM: dpm_run_callback(): nt36xxx_i2c_suspend+0x0/0x70 [nt36xxx] returns -110
+[16364.997598] PM: Device 14-0062 failed to suspend: error -110
+[16364.997603] PM: Some devices failed to suspend, or early wake event detected
+[16365.138394] OOM killer enabled.
+[16365.138397] Restarting tasks ... done.
+[16365.141644] PM: suspend exit
+---
+ drivers/input/touchscreen/nt36xxx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/input/touchscreen/nt36xxx.c b/drivers/input/touchscreen/nt36xxx.c
+index a572d2b..671a42d 100644
+--- a/drivers/input/touchscreen/nt36xxx.c
++++ b/drivers/input/touchscreen/nt36xxx.c
+@@ -881,7 +881,7 @@ MODULE_DEVICE_TABLE(i2c, nt36xxx_i2c_ts_id);
+ static struct i2c_driver nt36xxx_i2c_ts_driver = {
+ 	.driver = {
+ 		.name	= "nt36xxx_ts",
+-		.pm	= &nt36xxx_i2c_pm,
++		// .pm	= &nt36xxx_i2c_pm,
+ 		.of_match_table = nt36xxx_of_match,
+ 	},
+ 	.id_table	= nt36xxx_i2c_ts_id,

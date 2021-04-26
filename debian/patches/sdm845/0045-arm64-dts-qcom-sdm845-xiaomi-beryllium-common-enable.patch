@@ -1,0 +1,32 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Mon, 6 Dec 2021 14:20:42 +0530
+Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium-common: enable qcom wled
+ for brightness control
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index 8d769eac..9a456d1 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -338,6 +338,18 @@ vol_up_pin_a: vol-up-active {
+ 	};
+ };
+ 
++&pmi8998_wled {
++	status = "okay";
++	qcom,current-boost-limit = <970>;
++	qcom,ovp-millivolt = <29600>;
++	qcom,current-limit-microamp = <20000>;
++	qcom,enabled-strings = <0 1>;
++	qcom,num-strings = <2>;
++	qcom,switching-freq = <600>;
++	qcom,external-pfet;
++	qcom,cabc;
++};
++
+ &pm8998_pon {
+ 	resin {
+ 		compatible = "qcom,pm8941-resin";

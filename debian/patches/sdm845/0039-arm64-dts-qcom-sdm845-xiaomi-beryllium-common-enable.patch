@@ -1,0 +1,43 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Mon, 6 Dec 2021 14:12:31 +0530
+Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium-common: enable gpi_dma1
+ and qupv3_id_1 for touchscreen
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index feea341..e40b478 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -2,6 +2,7 @@
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/dma/qcom-gpi.h>
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include <dt-bindings/sound/qcom,q6afe.h>
+@@ -257,6 +258,10 @@ &gmu {
+ 	status = "okay";
+ };
+ 
++&gpi_dma1 {
++	status = "okay";
++};
++
+ &gpu {
+ 	status = "okay";
+ 
+@@ -347,6 +352,10 @@ &qupv3_id_0 {
+ 	status = "okay";
+ };
+ 
++&qupv3_id_1 {
++	status = "okay";
++};
++
+ &sdhc_2 {
+ 	status = "okay";
+ 

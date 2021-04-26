@@ -1,0 +1,268 @@
+From: "Dr. Git" <drgitx@gmail.com>
+Date: Tue, 18 May 2021 20:07:32 +0000
+Subject: arm64: dts: qcom: sdm845-oneplus-common: enable audio
+
+---
+ .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 118 +++++++++++++++++++++
+ .../boot/dts/qcom/sdm845-oneplus-enchilada.dts     |  43 ++++++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts |  35 ++++++
+ 3 files changed, 196 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 05463b2..29a348af 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -9,6 +9,8 @@
+ 
+ #include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
++#include <dt-bindings/sound/qcom,q6afe.h>
++#include <dt-bindings/sound/qcom,q6asm.h>
+ 
+ #include "sdm845.dtsi"
+ #include "pm8998.dtsi"
+@@ -462,6 +464,32 @@ &pmi8998_fg {
+ 	status = "okay";
+ };
+ 
++&q6afedai {
++	qi2s@22 {
++		reg = <22>;
++		qcom,sd-lines = <1>;
++	};
++
++	qi2s@23 {
++		reg = <23>;
++		qcom,sd-lines = <0>;
++	};
++};
++
++&q6asmdai {
++	dai@0 {
++		reg = <0>;
++	};
++
++	dai@1 {
++		reg = <1>;
++	};
++
++	dai@2 {
++		reg = <2>;
++	};
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
+@@ -527,6 +555,74 @@ rx {
+ 	};
+ };
+ 
++&sound {
++	compatible = "qcom,sdm845-sndcard";
++	pinctrl-0 = <&quat_mi2s_active &quat_mi2s_sd0_active &quat_mi2s_sd1_active>;
++	pinctrl-names = "default";
++
++	mm1-dai-link {
++		link-name = "MultiMedia1";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
++		};
++	};
++
++	mm2-dai-link {
++		link-name = "MultiMedia2";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA2>;
++		};
++	};
++
++	mm3-dai-link {
++		link-name = "MultiMedia3";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA3>;
++		};
++	};
++
++	speaker-dai-link {
++		link-name = "Speaker Playback";
++		cpu {
++			sound-dai = <&q6afedai QUATERNARY_MI2S_RX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++	};
++
++	slim-dai-link {
++		link-name = "SLIM Playback";
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_0_RX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++
++		codec {
++			sound-dai = <&wcd9340 0>;
++		};
++	};
++
++	slimcap-dai-link {
++		link-name = "SLIM Capture";
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_0_TX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++
++		codec {
++			sound-dai = <&wcd9340 1>;
++		};
++	};
++};
++
+ &uart6 {
+ 	status = "okay";
+ 
+@@ -608,6 +704,15 @@ &usb_1_hsphy {
+ &tlmm {
+ 	gpio-reserved-ranges = <0 4>, <81 4>;
+ 
++	wcd_intr_default: wcd_intr_default {
++		pins = <54>;
++		function = "gpio";
++
++		input-enable;
++		bias-pull-down;
++		drive-strength = <2>;
++	};
++
+ 	tri_state_key_default: tri_state_key_default {
+ 		mux {
+ 			pins = "gpio40", "gpio42", "gpio26";
+@@ -661,6 +766,19 @@ &venus {
+ 	firmware-name = "qcom/sdm845/oneplus6/venus.mbn";
+ };
+ 
++&wcd9340 {
++	pinctrl-0 = <&wcd_intr_default>;
++	pinctrl-names = "default";
++	clock-names = "extclk";
++	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
++	reset-gpios = <&tlmm 64 0>;
++	vdd-buck-supply = <&vreg_s4a_1p8>;
++	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
++	vdd-tx-supply = <&vreg_s4a_1p8>;
++	vdd-rx-supply = <&vreg_s4a_1p8>;
++	vdd-io-supply = <&vreg_s4a_1p8>;
++};
++
+ &wifi {
+ 	status = "okay";
+ 	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index b00e570..a9d33cf 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -34,3 +34,46 @@ &display_panel {
+ &pmi8998_fg {
+ 	monitored-battery = <&battery>;
+ };
++
++&i2c4 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	max98927_codec: max98927@3a {
++		#sound-dai-cells = <1>;
++		compatible = "maxim,max98927";
++		reg = <0x3a>;
++		vmon-slot-no = <1>;
++		imon-slot-no = <0>;
++	};
++};
++
++&sound {
++	model = "OnePlus 6";
++	audio-routing =	"RX_BIAS", "MCLK",
++			"AMIC2", "MIC BIAS2",
++			"AMIC3", "MIC BIAS4",
++			"AMIC4", "MIC BIAS1",
++			"AMIC5", "MIC BIAS4";
++
++	speaker-dai-link {
++		codec {
++			sound-dai = <&max98927_codec 0>;
++		};
++	};
++};
++
++&tlmm {
++	speaker-en-gpio {
++		gpio-hog;
++		gpios = <69 GPIO_ACTIVE_HIGH>;
++		output-high;
++	};
++};
++
++&wcd9340 {
++	qcom,micbias1-microvolt = <1800000>;
++	qcom,micbias2-microvolt = <2700000>;
++	qcom,micbias3-microvolt = <1800000>;
++	qcom,micbias4-microvolt = <1800000>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+index c8bf880..8e672f1 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+@@ -29,6 +29,34 @@ &display_panel {
+ 	compatible = "samsung,s6e3fc2x01";
+ };
+ 
++&i2c4 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	tfa9894_codec: tfa9894@34 {
++		#sound-dai-cells = <1>;
++		compatible = "nxp,tfa9894";
++		reg = <0x34>;
++		reset-gpio = <&tlmm 69 0>;
++	};
++};
++
++&sound {
++	model = "OnePlus 6T";
++	audio-routing = "RX_BIAS", "MCLK",
++			"AMIC1", "MIC BIAS3",
++			"AMIC2", "MIC BIAS2",
++			"AMIC3", "MIC BIAS4",
++			"AMIC4", "MIC BIAS1",
++			"AMIC5", "MIC BIAS3";
++
++	speaker-dai-link {
++		codec {
++			sound-dai = <&tfa9894_codec 0>;
++		};
++	};
++};
++
+ &pmi8998_fg {
+ 	monitored-battery = <&battery>;
+ };
+@@ -36,3 +64,10 @@ &pmi8998_fg {
+ &rmi4_f12 {
+ 	touchscreen-y-mm = <148>;
+ };
++
++&wcd9340 {
++	qcom,micbias1-microvolt = <2700000>;
++	qcom,micbias2-microvolt = <2700000>;
++	qcom,micbias3-microvolt = <2700000>;
++	qcom,micbias4-microvolt = <2700000>;
++};

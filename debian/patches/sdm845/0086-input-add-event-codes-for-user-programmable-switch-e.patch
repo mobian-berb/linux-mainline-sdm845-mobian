@@ -1,0 +1,43 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Mon, 21 Mar 2022 11:42:40 +0000
+Subject: input: add event codes for user programmable switch events
+
+Add SW_PROG{1,2,3,4} for device switches which are handled by userspace.
+This will be used for the tri-state key found on OnePlus phones.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ include/linux/mod_devicetable.h        | 2 +-
+ include/uapi/linux/input-event-codes.h | 6 +++++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/include/linux/mod_devicetable.h b/include/linux/mod_devicetable.h
+index 4bb7197..5f0175c 100644
+--- a/include/linux/mod_devicetable.h
++++ b/include/linux/mod_devicetable.h
+@@ -326,7 +326,7 @@ struct pcmcia_device_id {
+ #define INPUT_DEVICE_ID_LED_MAX		0x0f
+ #define INPUT_DEVICE_ID_SND_MAX		0x07
+ #define INPUT_DEVICE_ID_FF_MAX		0x7f
+-#define INPUT_DEVICE_ID_SW_MAX		0x10
++#define INPUT_DEVICE_ID_SW_MAX		0x14
+ #define INPUT_DEVICE_ID_PROP_MAX	0x1f
+ 
+ #define INPUT_DEVICE_ID_MATCH_BUS	1
+diff --git a/include/uapi/linux/input-event-codes.h b/include/uapi/linux/input-event-codes.h
+index 7989d94..611eee7 100644
+--- a/include/uapi/linux/input-event-codes.h
++++ b/include/uapi/linux/input-event-codes.h
+@@ -896,7 +896,11 @@
+ #define SW_MUTE_DEVICE		0x0e  /* set = device disabled */
+ #define SW_PEN_INSERTED		0x0f  /* set = pen inserted */
+ #define SW_MACHINE_COVER	0x10  /* set = cover closed */
+-#define SW_MAX			0x10
++#define SW_PROG1		0x11  /* set = program 1 (user defined) */
++#define SW_PROG2		0x12  /* set = program 2 (user defined) */
++#define SW_PROG3		0x13  /* set = program 3 (user defined) */
++#define SW_PROG4		0x14  /* set = program 4 (user defined) */
++#define SW_MAX			0x14
+ #define SW_CNT			(SW_MAX+1)
+ 
+ /*

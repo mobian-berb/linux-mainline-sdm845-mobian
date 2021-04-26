@@ -1,0 +1,47 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Thu, 15 Jul 2021 16:49:11 +0100
+Subject: arm64: dts: qcom: sdm845-oneplus-fajita: remove panel reset gpio
+
+Don't specify the reset GPIO for the OnePlus 6T, the panel in the 6T
+will refuse to initialise if it has been reset so use this as a
+workaround.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi   | 4 +---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 2 ++
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index a1aa5b6..18ee6c6 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -332,8 +332,6 @@ display_panel: panel@0 {
+ 
+ 		vddio-supply = <&vreg_l14a_1p88>;
+ 
+-		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+-
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&panel_reset_pins &panel_te_pin &panel_esd_pin>;
+ 
+@@ -629,7 +627,7 @@ mux {
+ 			pins = "gpio6", "gpio25", "gpio26";
+ 			function = "gpio";
+ 			drive-strength = <8>;
+-			bias-disable = <0>;
++			bias-disable;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index 5936b47..deff743 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -19,4 +19,6 @@ &display_panel {
+ 	status = "okay";
+ 
+ 	compatible = "samsung,sofef00";
++
++	reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+ };

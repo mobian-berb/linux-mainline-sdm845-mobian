@@ -1,0 +1,49 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Mon, 6 Dec 2021 14:19:20 +0530
+Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium-common: move firmware and
+ use mbn instead of mdt
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index 8a16b06..8d769eac 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -122,7 +122,7 @@ vreg_s4a_1p8: vreg-s4a-1p8 {
+ 
+ &adsp_pas {
+ 	status = "okay";
+-	firmware-name = "qcom/sdm845/adsp.mdt";
++	firmware-name = "qcom/sdm845/beryllium/adsp.mbn";
+ };
+ 
+ &apps_rsc {
+@@ -209,7 +209,7 @@ vreg_l26a_1p2: ldo26 {
+ 
+ &cdsp_pas {
+ 	status = "okay";
+-	firmware-name = "qcom/sdm845/cdsp.mdt";
++	firmware-name = "qcom/sdm845/beryllium/cdsp.mbn";
+ };
+ 
+ &dsi0 {
+@@ -271,7 +271,7 @@ &gpu {
+ 
+ 	zap-shader {
+ 		memory-region = <&gpu_mem>;
+-		firmware-name = "qcom/sdm845/a630_zap.mbn";
++		firmware-name = "qcom/sdm845/beryllium/a630_zap.mbn";
+ 	};
+ };
+ 
+@@ -298,7 +298,7 @@ &mdss {
+ 
+ &mss_pil {
+ 	status = "okay";
+-	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
++	firmware-name = "qcom/sdm845/beryllium/mba.mbn", "qcom/sdm845/beryllium/modem.mbn";
+ };
+ 
+ &ipa {
