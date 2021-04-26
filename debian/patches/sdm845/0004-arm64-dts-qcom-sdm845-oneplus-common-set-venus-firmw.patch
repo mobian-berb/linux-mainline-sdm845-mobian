@@ -1,0 +1,24 @@
+From: Kate Doeen <jld3103yt@gmail.com>
+Date: Thu, 28 Oct 2021 12:19:57 +0200
+Subject: [PATCH 06/79] arm64: dts: qcom: sdm845-oneplus-common: set venus
+ firmware path
+
+Enable loading the Qualcomm Venus video accelerator firmware on OnePlus sdm845 devices.
+
+Signed-off-by: Kate Doeen <jld3103yt@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 3e04aeb..7f42e531 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -646,6 +646,7 @@ mux {
+ 
+ &venus {
+ 	status = "okay";
++	firmware-name = "qcom/sdm845/oneplus6/venus.mbn";
+ };
+ 
+ &wifi {

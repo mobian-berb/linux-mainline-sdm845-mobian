@@ -1,0 +1,59 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Wed, 1 Dec 2021 23:49:54 +0000
+Subject: [PATCH 71/79] arch: arm64: qcom: sdm845-shift: fix focaltech touch
+ dts properties
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 20 +++-----------------
+ 1 file changed, 3 insertions(+), 17 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index a691062..8932293 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -484,22 +484,21 @@ &i2c5 {
+ 	dma-names = "tx", "rx";
+ 
+ 	touchscreen: focaltech@38 {
+-		compatible = "focaltech,fts3518";
++		compatible = "focaltech,fts";
+ 		reg = <0x38>;
+ 		interrupt-parent = <&tlmm>;
+ 		interrupts = <125 0x2>;
+ 		vdd-supply = <&vreg_l28a_3p0>;
+ 		vcc-i2c-supply = <&vreg_l14a_1p88>;
+ 
+-		pinctrl-names = "pmx_ts_active", "pmx_ts_suspend", "pmx_ts_release";
++		pinctrl-names = "ts_active", "ts_suspend";
+ 		pinctrl-0 = <&ts_int_active &ts_reset_active>;
+ 		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+-		pinctrl-2 = <&ts_release>;
+ 
+ 		focaltech,reset-gpio = <&tlmm 99 0x0>;
+ 		focaltech,irq-gpio = <&tlmm 125 0x2008>;
+ 		focaltech,max-touch-number = <5>;
+-		focaltech,display-coords = <0 0 1080 2160>;
++		focaltech,display-size = <1080 2160>;
+ 	};
+ };
+ 
+@@ -667,19 +666,6 @@ config {
+ 			};
+ 		};
+ 
+-		ts_release: ts_release {
+-			mux {
+-				pins = "gpio125", "gpio99";
+-				function = "gpio";
+-			};
+-
+-			config {
+-				pins = "gpio125", "gpio99";
+-				drive-strength = <2>;
+-				bias-pull-down;
+-			};
+-		};
+-
+ 		ts_reset_active: ts_reset_active {
+ 			mux {
+ 				pins = "gpio99";

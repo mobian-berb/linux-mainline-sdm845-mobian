@@ -1,0 +1,47 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Wed, 8 Dec 2021 16:15:40 +0000
+Subject: [PATCH 76/79] smb2: don't read current limit from APSD if usb isn't
+ connected
+
+---
+ drivers/power/supply/qcom_smb2.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/power/supply/qcom_smb2.c b/drivers/power/supply/qcom_smb2.c
+index 30c49ac7..7fa0551 100644
+--- a/drivers/power/supply/qcom_smb2.c
++++ b/drivers/power/supply/qcom_smb2.c
+@@ -486,7 +486,7 @@ static int smb2_apsd_get_charger_type(struct smb2_chip *chip, int* val) {
+ 	}
+ 	//dev_info(chip->dev, "APSD_STATUS = 0x%02x\n", apsd_stat);
+ 	if (!(apsd_stat & APSD_DTC_STATUS_DONE_BIT)) {
+-		dev_err(chip->dev, "Apsd not read");
++		dev_err(chip->dev, "Apsd not ready");
+ 		return -EAGAIN;
+ 	}
+ 
+@@ -605,15 +605,20 @@ int smb2_get_current_max(struct smb2_chip *chip,
+ 	unsigned int charger_type, hw_current_limit, current_ua;
+ 	bool non_compliant;
+ 	unsigned char val;
++	int usb_online;
+ 	int count;
+ 
++	smb2_get_prop_usb_online(chip, &usb_online);
++
++	if (usb_online == 0) { // USB is not online so just get the programmed limit
++		smb2_get_current_limit(chip, max_current);
++		return 0;
++	}
++
+ 	for (count = 0; count < 10; count++) {
+ 		rc = smb2_apsd_get_charger_type(chip, &charger_type);
+-		if (rc < 0) {
+-			dev_err(chip->dev, "Failed to read APSD, rc=%d", rc);
+-		} else {
++		if (rc >= 0)
+ 			break;
+-		}
+ 		msleep(100);
+ 	}
+ 

@@ -1,0 +1,23 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Fri, 8 Oct 2021 15:51:55 +0100
+Subject: [PATCH 61/79] arm64: dts: sdm845-db845c: enable rradc
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 119b154..025bf83 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -599,6 +599,10 @@ resin {
+ 	};
+ };
+ 
++&pmi8998_rradc {
++	status = "okay";
++};
++
+ /* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
+ &q6afedai {
+ 	qi2s@22 {

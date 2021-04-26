@@ -1,0 +1,70 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Tue, 30 Nov 2021 22:11:39 +0000
+Subject: [PATCH 70/79] arm64: dts: qcom: sdm845-axolotl: Add battery and
+ haptics
+
+Add nodes for the battery and enable haptics.
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 28 +++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 5a67381..a691062 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -73,6 +73,14 @@ ramoops: ramoops@b0000000 {
+ 		};
+ 	};
+ 
++	battery: battery {
++		compatible = "simple-battery";
++
++		charge-full-design-microamp-hours = <3850000>;
++		voltage-min-design-microvolt = <3600000>;
++		voltage-max-design-microvolt = <4400000>;
++	};
++
+ 	vph_pwr: vph-pwr-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vph_pwr";
+@@ -511,6 +519,11 @@ &mss_pil {
+ 	firmware-name = "qcom/sdm845/axolotl/mba.mbn", "qcom/sdm845/axolotl/modem.mbn";
+ };
+ 
++&pmi8998_fg {
++	status = "okay";
++	monitored-battery = <&battery>;
++};
++
+ &pm8998_gpio {
+ 	volume_up_gpio: pm8998_gpio6 {
+ 		pinconf {
+@@ -523,6 +536,12 @@ pinconf {
+ 	};
+ };
+ 
++&pmi8998_haptics {
++	status = "okay";
++
++	qcom,wave-play-rate-us = <4255>;
++};
++
+ &pm8998_pon {
+ 	volume_down_resin: resin {
+ 		compatible = "qcom,pm8941-resin";
+@@ -533,6 +552,15 @@ volume_down_resin: resin {
+ 	};
+ };
+ 
++&pmi8998_rradc {
++	status = "okay";
++};
++
++&pmi8998_smb2 {
++	status = "okay";
++	monitored-battery = <&battery>;
++};
++
+ &qup_uart9_default {
+ 	pinconf-rx {
+ 		pins = "gpio5";

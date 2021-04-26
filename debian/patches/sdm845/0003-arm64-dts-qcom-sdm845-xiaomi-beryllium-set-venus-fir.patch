@@ -1,0 +1,21 @@
+From: jld3103 <jld3103yt@gmail.com>
+Date: Sun, 1 Aug 2021 10:39:28 +0200
+Subject: [PATCH 05/79] arm64: dts: qcom: sdm845-xiaomi-beryllium: set venus
+ firmware path
+
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+index 580d4cc..3673895 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+@@ -514,6 +514,7 @@ &usb_1_qmpphy {
+ 
+ &venus {
+ 	status = "okay";
++	firmware-name = "qcom/sdm845/beryllium/venus.mbn";
+ };
+ 
+ &wcd9340{
