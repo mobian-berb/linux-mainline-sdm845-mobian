@@ -105,3 +105,7 @@ sdm845/0104-power-qcom_fg-silence-EPROBE_DEFER-error.patch
 sdm845/0105-fixup-input-touchscreen-focaltech_fts-cleanup-and-su.patch
 sdm845/0106-power-supply-qcom_fg-add-present-sysfs-property.patch
 sdm845/0107-power-supply-pmi8998_charger-drop-in-v5-fix-slow-cha.patch
+
+mobian/0108-arm64-configs-add-sdm845_defconfig.patch
+mobian/0109-builddeb-don-t-build-linux-libc-dev-package.patch
+debian/0110-wireless-add-debian-wireless-regdb-certificates.patch
