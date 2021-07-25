@@ -87,3 +87,6 @@ sdm845/0086-input-add-event-codes-for-user-programmable-switch-e.patch
 sdm845/0087-arm64-dts-qcom-sdm845-oneplus-add-tri-state-key.patch
 sdm845/0088-arm64-dts-qcom-sdm845-use-legacy-gpio-api.patch
 sdm845/0089-arm64-dts-qcom-starqltechn-add-initial-device-tree-f.patch
+mobian/0090-arm64-configs-add-sdm845_defconfig.patch
+mobian/0091-builddeb-don-t-build-linux-libc-dev-package.patch
+debian/0092-wireless-add-debian-wireless-regdb-certificates.patch
