@@ -83,3 +83,7 @@ sdm845/0082-sound-soc-codecs-wcd-mbhc-v2-expose-ALSA-control-for.patch
 sdm845/0083-ASoC-qcom-sdm845-set-quaternary-MI2S-codec-DAI-to-I2.patch
 sdm845/0084-ASoC-codecs-wcd934x-fix-unbalanced-micbias-enable-an.patch
 sdm845/0085-ASoC-qcom-qdsp6-q6voice-dai-implement-all-slimbus-tx.patch
+
+mobian/0086-arm64-configs-add-sdm845_defconfig.patch
+mobian/0087-builddeb-don-t-build-linux-libc-dev-package.patch
+debian/0088-wireless-add-debian-wireless-regdb-certificates.patch
