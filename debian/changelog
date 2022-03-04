@@ -1,3 +1,9 @@
+linux-5.16-sdm845 (5.16.12+sdm845-2) unstable; urgency=medium
+
+  * d/patches: improve defconfig and rebase on 5.16.12.
+
+ -- Arnaud Ferraris <arnaud.ferraris@collabora.com>  Fri, 04 Mar 2022 13:18:43 +0100
+
 linux-5.16-sdm845 (5.16.4+sdm845-1) unstable; urgency=medium
 
   * Initial release
