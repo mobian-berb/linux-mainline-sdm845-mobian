@@ -145,10 +145,10 @@ index aba8aa4..f0eccbb 100644
  	dp_power_client_deinit(dp->power);
  	dp_aux_unregister(dp->aux);
 diff --git a/drivers/gpu/drm/msm/dsi/dsi.c b/drivers/gpu/drm/msm/dsi/dsi.c
-index fc280cc..ba6f28b 100644
+index 122fadc..fe6931f 100644
 --- a/drivers/gpu/drm/msm/dsi/dsi.c
 +++ b/drivers/gpu/drm/msm/dsi/dsi.c
-@@ -110,8 +110,7 @@ static struct msm_dsi *dsi_init(struct platform_device *pdev)
+@@ -115,8 +115,7 @@ static struct msm_dsi *dsi_init(struct platform_device *pdev)
  
  static int dsi_bind(struct device *dev, struct device *master, void *data)
  {
@@ -158,7 +158,7 @@ index fc280cc..ba6f28b 100644
  	struct platform_device *pdev = to_platform_device(dev);
  	struct msm_dsi *msm_dsi;
  
-@@ -133,8 +132,7 @@ static int dsi_bind(struct device *dev, struct device *master, void *data)
+@@ -138,8 +137,7 @@ static int dsi_bind(struct device *dev, struct device *master, void *data)
  static void dsi_unbind(struct device *dev, struct device *master,
  		void *data)
  {
@@ -169,10 +169,10 @@ index fc280cc..ba6f28b 100644
  	int id = msm_dsi->id;
  
 diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi/hdmi.c
-index 75b64e6..64ad73a 100644
+index a439794..a5dd80d 100644
 --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
 +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
-@@ -514,8 +514,7 @@ static int msm_hdmi_register_audio_driver(struct hdmi *hdmi, struct device *dev)
+@@ -519,8 +519,7 @@ static int msm_hdmi_register_audio_driver(struct hdmi *hdmi, struct device *dev)
  
  static int msm_hdmi_bind(struct device *dev, struct device *master, void *data)
  {
@@ -182,7 +182,7 @@ index 75b64e6..64ad73a 100644
  	struct hdmi_platform_config *hdmi_cfg;
  	struct hdmi *hdmi;
  	struct device_node *of_node = dev->of_node;
-@@ -586,8 +585,8 @@ static int msm_hdmi_bind(struct device *dev, struct device *master, void *data)
+@@ -591,8 +590,8 @@ static int msm_hdmi_bind(struct device *dev, struct device *master, void *data)
  static void msm_hdmi_unbind(struct device *dev, struct device *master,
  		void *data)
  {
@@ -194,7 +194,7 @@ index 75b64e6..64ad73a 100644
  		if (priv->hdmi->audio_pdev)
  			platform_device_unregister(priv->hdmi->audio_pdev);
 diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
-index 892c043..64230e4 100644
+index f04a233..d321c11 100644
 --- a/drivers/gpu/drm/msm/msm_drv.c
 +++ b/drivers/gpu/drm/msm/msm_drv.c
 @@ -339,8 +339,8 @@ static int vblank_ctrl_queue_work(struct msm_drm_private *priv,
