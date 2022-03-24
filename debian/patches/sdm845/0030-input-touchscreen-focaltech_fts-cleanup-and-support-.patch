@@ -32,7 +32,7 @@ index 459a295..c82170b 100644
  obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
 diff --git a/drivers/input/touchscreen/focaltech_ft8719.c b/drivers/input/touchscreen/focaltech_ft8719.c
 deleted file mode 100644
-index b248688..00000000
+index b248688..0000000
 --- a/drivers/input/touchscreen/focaltech_ft8719.c
 +++ /dev/null
 @@ -1,1989 +0,0 @@
@@ -2027,7 +2027,7 @@ index b248688..00000000
 -MODULE_LICENSE("GPL v2");
 diff --git a/drivers/input/touchscreen/focaltech_ft8719.h b/drivers/input/touchscreen/focaltech_ft8719.h
 deleted file mode 100644
-index d6619a2..00000000
+index d6619a2..0000000
 --- a/drivers/input/touchscreen/focaltech_ft8719.h
 +++ /dev/null
 @@ -1,318 +0,0 @@
@@ -2351,7 +2351,7 @@ index d6619a2..00000000
 -#endif /* __LINUX_FOCALTECH_CORE_H__ */
 diff --git a/drivers/input/touchscreen/focaltech_fts.c b/drivers/input/touchscreen/focaltech_fts.c
 new file mode 100644
-index 00000000..eda1b65
+index 0000000..eda1b65
 --- /dev/null
 +++ b/drivers/input/touchscreen/focaltech_fts.c
 @@ -0,0 +1,1008 @@

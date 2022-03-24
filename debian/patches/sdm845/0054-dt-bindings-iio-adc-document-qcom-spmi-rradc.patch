@@ -13,7 +13,7 @@ Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 
 diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
 new file mode 100644
-index 00000000..f5afe2d
+index 0000000..f5afe2d
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
 @@ -0,0 +1,57 @@

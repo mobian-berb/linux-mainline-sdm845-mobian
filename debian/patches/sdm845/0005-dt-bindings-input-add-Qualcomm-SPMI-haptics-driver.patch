@@ -14,7 +14,7 @@ Signed-off-by: Caleb Connolly <caleb@connolly.tech>
 
 diff --git a/Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml b/Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml
 new file mode 100644
-index 00000000..8ef9b4e
+index 0000000..8ef9b4e
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml
 @@ -0,0 +1,128 @@
@@ -148,7 +148,7 @@ index 00000000..8ef9b4e
 +    };
 diff --git a/include/dt-bindings/input/qcom,spmi-haptics.h b/include/dt-bindings/input/qcom,spmi-haptics.h
 new file mode 100644
-index 00000000..14a7e7d
+index 0000000..14a7e7d
 --- /dev/null
 +++ b/include/dt-bindings/input/qcom,spmi-haptics.h
 @@ -0,0 +1,32 @@

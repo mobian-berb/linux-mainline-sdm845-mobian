@@ -16,7 +16,7 @@ Subject: [PATCH 32/79] input: touchscreen: Add Focaltech FT8719 touchscreen
 
 diff --git a/Documentation/devicetree/bindings/input/touchscreen/focaltech_ts.txt b/Documentation/devicetree/bindings/input/touchscreen/focaltech_ts.txt
 new file mode 100644
-index 00000000..0174e3d
+index 0000000..0174e3d
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/input/touchscreen/focaltech_ts.txt
 @@ -0,0 +1,54 @@
@@ -107,7 +107,7 @@ index f2515b5..459a295 100644
  obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
 diff --git a/drivers/input/touchscreen/focaltech_ft8719.c b/drivers/input/touchscreen/focaltech_ft8719.c
 new file mode 100644
-index 00000000..b248688
+index 0000000..b248688
 --- /dev/null
 +++ b/drivers/input/touchscreen/focaltech_ft8719.c
 @@ -0,0 +1,1989 @@
@@ -2102,7 +2102,7 @@ index 00000000..b248688
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/input/touchscreen/focaltech_ft8719.h b/drivers/input/touchscreen/focaltech_ft8719.h
 new file mode 100644
-index 00000000..d6619a2
+index 0000000..d6619a2
 --- /dev/null
 +++ b/drivers/input/touchscreen/focaltech_ft8719.h
 @@ -0,0 +1,318 @@

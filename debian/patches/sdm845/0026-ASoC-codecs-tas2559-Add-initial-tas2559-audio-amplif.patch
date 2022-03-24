@@ -58,7 +58,7 @@ index 9acfbcb..0da4857 100644
  obj-$(CONFIG_SND_SOC_AC97_CODEC)	+= snd-soc-ac97.o
 diff --git a/sound/soc/codecs/tas2559.c b/sound/soc/codecs/tas2559.c
 new file mode 100644
-index 00000000..9aa1a02
+index 0000000..9aa1a02
 --- /dev/null
 +++ b/sound/soc/codecs/tas2559.c
 @@ -0,0 +1,5082 @@
@@ -5146,7 +5146,7 @@ index 00000000..9aa1a02
 +MODULE_LICENSE("GPL v2");
 diff --git a/sound/soc/codecs/tas2559.h b/sound/soc/codecs/tas2559.h
 new file mode 100644
-index 00000000..bdd5f4e
+index 0000000..bdd5f4e
 --- /dev/null
 +++ b/sound/soc/codecs/tas2559.h
 @@ -0,0 +1,525 @@
