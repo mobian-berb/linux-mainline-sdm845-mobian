@@ -8,7 +8,7 @@ Subject: [PATCH 41/79] arm64: dts: qcom: sdm845-xiaomi-beryllium-common:
  1 file changed, 12 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-index 5f9d82fc..ef882f8 100644
+index 5f9d82f..ef882f8 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 @@ -345,6 +345,18 @@ vol_up_pin_a: vol-up-active {

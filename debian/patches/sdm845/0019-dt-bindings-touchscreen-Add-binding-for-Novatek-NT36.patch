@@ -15,7 +15,7 @@ Reviewed-by: Rob Herring <robh@kernel.org>
 
 diff --git a/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml b/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
 new file mode 100644
-index 00000000..a360a9f
+index 0000000..a360a9f
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
 @@ -0,0 +1,59 @@
