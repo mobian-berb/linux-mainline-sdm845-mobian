@@ -1,3 +1,9 @@
+linux-5.17-sdm845 (5.17.2+sdm845-2) unstable; urgency=medium
+
+  * Rebase on 5.17.2
+
+ -- Arnaud Ferraris <arnaud.ferraris@collabora.com>  Mon, 11 Apr 2022 13:05:29 +0200
+
 linux-5.17-sdm845 (5.17.1+sdm845-1) unstable; urgency=medium
 
   * Initial 5.17 release
