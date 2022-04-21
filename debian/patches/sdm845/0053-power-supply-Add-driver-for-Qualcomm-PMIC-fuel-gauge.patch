@@ -16,7 +16,7 @@ Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
  create mode 100644 drivers/power/supply/qcom_fg.c
 
 diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index b366e2f..c9cb736 100644
+index 5e4a693..e58bea1 100644
 --- a/drivers/power/supply/Kconfig
 +++ b/drivers/power/supply/Kconfig
 @@ -866,4 +866,12 @@ config CHARGER_SURFACE
@@ -43,7 +43,7 @@ index 2c1b264..8a20011 100644
 +obj-$(CONFIG_BATTERY_QCOM_FG)	+= qcom_fg.o
 diff --git a/drivers/power/supply/qcom_fg.c b/drivers/power/supply/qcom_fg.c
 new file mode 100644
-index 00000000..4fa86d9
+index 0000000..4fa86d9
 --- /dev/null
 +++ b/drivers/power/supply/qcom_fg.c
 @@ -0,0 +1,1222 @@

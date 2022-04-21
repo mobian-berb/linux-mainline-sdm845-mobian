@@ -14,7 +14,7 @@ Reviewed-by: Rob Herring <robh@kernel.org>
 
 diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
 new file mode 100644
-index 00000000..11d47c4
+index 0000000..11d47c4
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
 @@ -0,0 +1,54 @@

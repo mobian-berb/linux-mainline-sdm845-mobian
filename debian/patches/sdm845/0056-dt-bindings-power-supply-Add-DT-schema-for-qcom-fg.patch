@@ -12,7 +12,7 @@ Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 
 diff --git a/Documentation/devicetree/bindings/power/supply/qcom,fg.yaml b/Documentation/devicetree/bindings/power/supply/qcom,fg.yaml
 new file mode 100644
-index 00000000..29af7aa
+index 0000000..29af7aa
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/power/supply/qcom,fg.yaml
 @@ -0,0 +1,102 @@

@@ -37,7 +37,7 @@ index f7232052..6e6f53f 100644
  dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
 new file mode 100644
-index 00000000..8553c8b
+index 0000000..8553c8b
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
 @@ -0,0 +1,736 @@

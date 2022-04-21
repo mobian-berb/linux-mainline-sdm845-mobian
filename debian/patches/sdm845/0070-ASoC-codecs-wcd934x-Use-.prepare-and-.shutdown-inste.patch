@@ -15,7 +15,7 @@ of wcd934x as part of .prepare and .shutdown instead of .trigger.
  1 file changed, 21 insertions(+), 20 deletions(-)
 
 diff --git a/sound/soc/codecs/wcd934x.c b/sound/soc/codecs/wcd934x.c
-index 6c46852..3cc70ac 100644
+index 1e75e93..0727a27 100644
 --- a/sound/soc/codecs/wcd934x.c
 +++ b/sound/soc/codecs/wcd934x.c
 @@ -1915,7 +1915,7 @@ static int wcd934x_hw_free(struct snd_pcm_substream *substream,

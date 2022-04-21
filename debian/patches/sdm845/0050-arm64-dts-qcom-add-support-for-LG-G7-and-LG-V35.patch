@@ -27,7 +27,7 @@ index c56ec2d..28063a8 100644
  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-fajita.dtb
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-lge-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lge-common.dtsi
 new file mode 100644
-index 00000000..e754d72
+index 0000000..e754d72
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-lge-common.dtsi
 @@ -0,0 +1,634 @@
@@ -667,7 +667,7 @@ index 00000000..e754d72
 +};
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-lge-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lge-judyln.dts
 new file mode 100644
-index 00000000..5ee43a5
+index 0000000..5ee43a5
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-lge-judyln.dts
 @@ -0,0 +1,81 @@
@@ -754,7 +754,7 @@ index 00000000..5ee43a5
 +};
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-lge-judyp.dts b/arch/arm64/boot/dts/qcom/sdm845-lge-judyp.dts
 new file mode 100644
-index 00000000..7131476
+index 0000000..7131476
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-lge-judyp.dts
 @@ -0,0 +1,57 @@

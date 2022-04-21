@@ -7,7 +7,7 @@ Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium-common: enable ipa
  1 file changed, 6 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-index e40b478..a4ea8a0d 100644
+index e40b478..a4ea8a0 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 @@ -297,6 +297,12 @@ &mss_pil {

@@ -7,7 +7,7 @@ Subject: drm/panel: nt36672a: add backlight support
  1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/panel/panel-novatek-nt36672a.c b/drivers/gpu/drm/panel/panel-novatek-nt36672a.c
-index 231f371..6d6ce427 100644
+index 231f371..6d6ce42 100644
 --- a/drivers/gpu/drm/panel/panel-novatek-nt36672a.c
 +++ b/drivers/gpu/drm/panel/panel-novatek-nt36672a.c
 @@ -628,6 +628,10 @@ static int nt36672a_panel_add(struct nt36672a_panel *pinfo)

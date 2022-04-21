@@ -27,7 +27,7 @@ index 1c452b4..025bf83 100644
  	status = "okay";
  	zap-shader {
 diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index e8b50f3..e8532b0 100644
+index afe5f4c..a331406 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
 @@ -13,6 +13,7 @@

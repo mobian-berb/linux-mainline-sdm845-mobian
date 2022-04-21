@@ -11,7 +11,7 @@ Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
  1 file changed, 37 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index e8532b0..2091168 100644
+index a331406..387acf8b 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
 @@ -3076,6 +3076,43 @@ glink-edge {

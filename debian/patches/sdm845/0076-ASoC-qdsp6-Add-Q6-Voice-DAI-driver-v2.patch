@@ -18,7 +18,7 @@ v2: Set AIFs SND_SOC_NOPM
 
 diff --git a/include/dt-bindings/sound/qcom,q6voice.h b/include/dt-bindings/sound/qcom,q6voice.h
 new file mode 100644
-index 00000000..6b05983
+index 0000000..6b05983
 --- /dev/null
 +++ b/include/dt-bindings/sound/qcom,q6voice.h
 @@ -0,0 +1,7 @@
@@ -58,7 +58,7 @@ index 7e27c48..8491440 100644
 +obj-$(CONFIG_SND_SOC_QDSP6_Q6VOICE_DAI) += q6voice-dai.o
 diff --git a/sound/soc/qcom/qdsp6/q6voice-dai.c b/sound/soc/qcom/qdsp6/q6voice-dai.c
 new file mode 100644
-index 00000000..73401ed
+index 0000000..73401ed
 --- /dev/null
 +++ b/sound/soc/qcom/qdsp6/q6voice-dai.c
 @@ -0,0 +1,136 @@

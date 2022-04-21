@@ -9,7 +9,7 @@ Subject: [PATCH] arm64: configs: add sdm845_defconfig
 
 diff --git a/arch/arm64/configs/sdm845_defconfig b/arch/arm64/configs/sdm845_defconfig
 new file mode 100644
-index 00000000..4681dcf
+index 0000000..4681dcf
 --- /dev/null
 +++ b/arch/arm64/configs/sdm845_defconfig
 @@ -0,0 +1,897 @@
