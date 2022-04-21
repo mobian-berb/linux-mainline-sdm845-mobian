@@ -81,7 +81,7 @@ index 80fcb91..629cad6 100644
  	ret = ath10k_qmi_msa_mem_info_send_sync_msg(qmi);
  	if (ret)
 diff --git a/drivers/net/wireless/ath/ath10k/snoc.c b/drivers/net/wireless/ath/ath10k/snoc.c
-index 9513ab6..5b91e6a 100644
+index f79dd9a..e058698 100644
 --- a/drivers/net/wireless/ath/ath10k/snoc.c
 +++ b/drivers/net/wireless/ath/ath10k/snoc.c
 @@ -1336,6 +1336,9 @@ static void ath10k_snoc_quirks_init(struct ath10k *ar)

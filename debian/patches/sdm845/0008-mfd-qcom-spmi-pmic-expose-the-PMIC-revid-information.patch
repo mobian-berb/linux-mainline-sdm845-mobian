@@ -271,7 +271,7 @@ index 1cacc00..1ef426a 100644
  }
 diff --git a/include/soc/qcom/qcom-spmi-pmic.h b/include/soc/qcom/qcom-spmi-pmic.h
 new file mode 100644
-index 00000000..a8a77be
+index 0000000..a8a77be
 --- /dev/null
 +++ b/include/soc/qcom/qcom-spmi-pmic.h
 @@ -0,0 +1,60 @@

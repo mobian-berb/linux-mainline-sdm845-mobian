@@ -19,10 +19,10 @@ Fixes: 5ca6779d2f18 ("drm/msm/devfreq: Restrict idle clamping to a618 for now")
  3 files changed, 16 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index 17cfad64..de8841e 100644
+index 19622fb..09b6573 100644
 --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
 +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -1848,7 +1848,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+@@ -1852,7 +1852,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
  	 * to cause power supply issues:
  	 */
  	if (info && (info->revn == 618))

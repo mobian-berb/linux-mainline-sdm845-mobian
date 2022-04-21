@@ -68,7 +68,7 @@ index 79f877d..c852fc1 100644
  obj-$(CONFIG_TOUCHSCREEN_IPAQ_MICRO)	+= ipaq-micro-ts.o
 diff --git a/drivers/input/touchscreen/nt36xxx.c b/drivers/input/touchscreen/nt36xxx.c
 new file mode 100644
-index 00000000..a572d2b
+index 0000000..a572d2b
 --- /dev/null
 +++ b/drivers/input/touchscreen/nt36xxx.c
 @@ -0,0 +1,894 @@
@@ -968,7 +968,7 @@ index 00000000..a572d2b
 +MODULE_AUTHOR("AngeloGioacchino Del Regno <kholk11@gmail.com>");
 diff --git a/drivers/input/touchscreen/nt36xxx.h b/drivers/input/touchscreen/nt36xxx.h
 new file mode 100644
-index 00000000..6f03dfb4
+index 0000000..6f03dfb4
 --- /dev/null
 +++ b/drivers/input/touchscreen/nt36xxx.h
 @@ -0,0 +1,122 @@

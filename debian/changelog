@@ -1,3 +1,9 @@
+linux-5.17-sdm845 (5.17.4+sdm845-1) UNRELEASED; urgency=medium
+
+  * d/patches: rebase on 5.17.4
+
+ -- Mobot <invalid@mobian.org>  Thu, 21 Apr 2022 03:06:31 +0000
+
 linux-5.17-sdm845 (5.17.2+sdm845-2) unstable; urgency=medium
 
   * Rebase on 5.17.2

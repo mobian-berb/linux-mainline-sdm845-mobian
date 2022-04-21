@@ -12,7 +12,7 @@ Signed-off-by: Caleb Connolly <caleb@connolly.tech>
 
 diff --git a/Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.yaml b/Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.yaml
 new file mode 100644
-index 00000000..bb25a4f
+index 0000000..bb25a4f
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.yaml
 @@ -0,0 +1,78 @@

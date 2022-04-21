@@ -10,7 +10,7 @@ Also, configure the audio dai link.
  1 file changed, 40 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-index a4ea8a0d..8a16b06 100644
+index a4ea8a0..8a16b06 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 @@ -258,6 +258,10 @@ &gmu {

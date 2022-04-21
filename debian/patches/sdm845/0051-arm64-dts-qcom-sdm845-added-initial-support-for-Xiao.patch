@@ -23,7 +23,7 @@ index 28063a8..5364348 100644
  dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-equuleus.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-equuleus.dts
 new file mode 100644
-index 00000000..14f94d5
+index 0000000..14f94d5
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-equuleus.dts
 @@ -0,0 +1,602 @@

@@ -30,7 +30,7 @@ index 5364348..8438145 100644
  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-apollo.dtb
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
 new file mode 100644
-index 00000000..a0b5d80
+index 0000000..a0b5d80
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
 @@ -0,0 +1,45 @@
@@ -81,7 +81,7 @@ index 00000000..a0b5d80
 +};
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dtsi b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dtsi
 new file mode 100644
-index 00000000..dad2de3
+index 0000000..dad2de3
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dtsi
 @@ -0,0 +1,449 @@

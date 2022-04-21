@@ -37,7 +37,7 @@ index 3963bf2..635cb6f 100644
 +obj-$(CONFIG_SND_SOC_QDSP6_Q6VOICE) += q6voice-common.o
 diff --git a/sound/soc/qcom/qdsp6/q6voice-common.c b/sound/soc/qcom/qdsp6/q6voice-common.c
 new file mode 100644
-index 00000000..0c7377a
+index 0000000..0c7377a
 --- /dev/null
 +++ b/sound/soc/qcom/qdsp6/q6voice-common.c
 @@ -0,0 +1,273 @@
@@ -316,7 +316,7 @@ index 00000000..0c7377a
 +MODULE_LICENSE("GPL v2");
 diff --git a/sound/soc/qcom/qdsp6/q6voice-common.h b/sound/soc/qcom/qdsp6/q6voice-common.h
 new file mode 100644
-index 00000000..7db198c
+index 0000000..7db198c
 --- /dev/null
 +++ b/sound/soc/qcom/qdsp6/q6voice-common.h
 @@ -0,0 +1,44 @@

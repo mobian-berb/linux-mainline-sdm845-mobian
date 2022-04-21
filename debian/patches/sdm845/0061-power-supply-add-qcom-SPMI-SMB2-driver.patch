@@ -22,7 +22,7 @@ smb2: adopt battery info API changes
  create mode 100644 drivers/power/supply/qcom_spmi_pmic.h
 
 diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index c9cb736..7c9ac3a 100644
+index e58bea1..d12cb1c 100644
 --- a/drivers/power/supply/Kconfig
 +++ b/drivers/power/supply/Kconfig
 @@ -874,4 +874,12 @@ config BATTERY_QCOM_FG
@@ -49,7 +49,7 @@ index 8a20011..681f6e0 100644
 +obj-$(CONFIG_CHARGER_QCOM_SMB2)	+= qcom_smb2.o
 diff --git a/drivers/power/supply/qcom_smb2.c b/drivers/power/supply/qcom_smb2.c
 new file mode 100644
-index 00000000..9d73b421
+index 0000000..9d73b421
 --- /dev/null
 +++ b/drivers/power/supply/qcom_smb2.c
 @@ -0,0 +1,1265 @@
@@ -1320,7 +1320,7 @@ index 00000000..9d73b421
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/power/supply/qcom_spmi_pmic.h b/drivers/power/supply/qcom_spmi_pmic.h
 new file mode 100644
-index 00000000..7cad5658
+index 0000000..7cad5658
 --- /dev/null
 +++ b/drivers/power/supply/qcom_spmi_pmic.h
 @@ -0,0 +1,37 @@
