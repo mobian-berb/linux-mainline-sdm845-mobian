@@ -15,10 +15,10 @@ of wcd934x as part of .prepare and .shutdown instead of .trigger.
  1 file changed, 21 insertions(+), 20 deletions(-)
 
 diff --git a/sound/soc/codecs/wcd934x.c b/sound/soc/codecs/wcd934x.c
-index 1e75e93..0727a27 100644
+index 6298ebe..f990acd2 100644
 --- a/sound/soc/codecs/wcd934x.c
 +++ b/sound/soc/codecs/wcd934x.c
-@@ -1915,7 +1915,7 @@ static int wcd934x_hw_free(struct snd_pcm_substream *substream,
+@@ -1891,7 +1891,7 @@ static int wcd934x_hw_free(struct snd_pcm_substream *substream,
  	return 0;
  }
  
@@ -27,7 +27,7 @@ index 1e75e93..0727a27 100644
  			   struct snd_soc_dai *dai)
  {
  	struct wcd_slim_codec_dai_data *dai_data;
-@@ -1925,28 +1925,28 @@ static int wcd934x_trigger(struct snd_pcm_substream *substream, int cmd,
+@@ -1901,28 +1901,28 @@ static int wcd934x_trigger(struct snd_pcm_substream *substream, int cmd,
  	wcd = snd_soc_component_get_drvdata(dai->component);
  
  	dai_data = &wcd->dai[dai->id];
@@ -74,7 +74,7 @@ index 1e75e93..0727a27 100644
  static int wcd934x_set_channel_map(struct snd_soc_dai *dai,
  				   unsigned int tx_num, unsigned int *tx_slot,
  				   unsigned int rx_num, unsigned int *rx_slot)
-@@ -2032,9 +2032,10 @@ static int wcd934x_get_channel_map(struct snd_soc_dai *dai,
+@@ -2008,9 +2008,10 @@ static int wcd934x_get_channel_map(struct snd_soc_dai *dai,
  }
  
  static const struct snd_soc_dai_ops wcd934x_dai_ops = {
