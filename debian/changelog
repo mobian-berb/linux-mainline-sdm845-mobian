@@ -1,3 +1,9 @@
+linux-5.16-sdm845 (5.16.20+sdm845-4) unstable; urgency=medium
+
+  * d/patches: rebase on 5.16.20
+
+ -- Arnaud Ferraris <arnaud.ferraris@gmail.com>  Fri, 29 Apr 2022 13:35:44 +0200
+
 linux-5.16-sdm845 (5.16.17+sdm845-3) unstable; urgency=medium
 
   * d/patches: rebase on v5.16.17
