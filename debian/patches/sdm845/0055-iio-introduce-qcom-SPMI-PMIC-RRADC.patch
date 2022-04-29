@@ -54,7 +54,7 @@ index d3f5354..ca8bad5 100644
  obj-$(CONFIG_QCOM_PM8XXX_XOADC) += qcom-pm8xxx-xoadc.o
 diff --git a/drivers/iio/adc/qcom-spmi-rradc.c b/drivers/iio/adc/qcom-spmi-rradc.c
 new file mode 100644
-index 0000000..0d31a59
+index 00000000..0d31a59
 --- /dev/null
 +++ b/drivers/iio/adc/qcom-spmi-rradc.c
 @@ -0,0 +1,1041 @@

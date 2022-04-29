@@ -115,7 +115,7 @@ index 7b24224..cab6451 100644
  
  	DBG("");
 diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index aba8aa4..f0eccbb 100644
+index 98a546a6..98e5a7b 100644
 --- a/drivers/gpu/drm/msm/dp/dp_display.c
 +++ b/drivers/gpu/drm/msm/dp/dp_display.c
 @@ -224,13 +224,10 @@ static int dp_display_bind(struct device *dev, struct device *master,

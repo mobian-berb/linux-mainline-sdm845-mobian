@@ -22,7 +22,7 @@ Co-authored-by: Joel Selvaraj <jo@jsfamily.in>
 
 diff --git a/arch/arm64/configs/sdm845.config b/arch/arm64/configs/sdm845.config
 new file mode 100644
-index 0000000..85a376c
+index 00000000..85a376c
 --- /dev/null
 +++ b/arch/arm64/configs/sdm845.config
 @@ -0,0 +1,828 @@

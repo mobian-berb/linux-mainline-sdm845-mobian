@@ -20,7 +20,7 @@ None of the other codecs have them in headers. sooooo.
  create mode 100644 sound/soc/codecs/tas2559.h
 
 diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 3a610ba..4597d8e 100644
+index 0d4e1fb..42c98b3 100644
 --- a/sound/soc/codecs/Kconfig
 +++ b/sound/soc/codecs/Kconfig
 @@ -300,6 +300,7 @@ config SND_SOC_ALL_CODECS
@@ -31,7 +31,7 @@ index 3a610ba..4597d8e 100644
  	help
  	  Normally ASoC codec drivers are only built if a machine driver which
  	  uses them is also built since they are only usable with a machine
-@@ -1974,6 +1975,9 @@ config SND_SOC_LPASS_VA_MACRO
+@@ -1979,6 +1980,9 @@ config SND_SOC_LPASS_VA_MACRO
  	depends on COMMON_CLK
  	select REGMAP_MMIO
  	tristate "Qualcomm VA Macro in LPASS(Low Power Audio SubSystem)"
@@ -58,7 +58,7 @@ index 9acfbcb..0da4857 100644
  obj-$(CONFIG_SND_SOC_AC97_CODEC)	+= snd-soc-ac97.o
 diff --git a/sound/soc/codecs/tas2559.c b/sound/soc/codecs/tas2559.c
 new file mode 100644
-index 0000000..9aa1a02
+index 00000000..9aa1a02
 --- /dev/null
 +++ b/sound/soc/codecs/tas2559.c
 @@ -0,0 +1,5082 @@
@@ -5146,7 +5146,7 @@ index 0000000..9aa1a02
 +MODULE_LICENSE("GPL v2");
 diff --git a/sound/soc/codecs/tas2559.h b/sound/soc/codecs/tas2559.h
 new file mode 100644
-index 0000000..bdd5f4e
+index 00000000..bdd5f4e
 --- /dev/null
 +++ b/sound/soc/codecs/tas2559.h
 @@ -0,0 +1,525 @@

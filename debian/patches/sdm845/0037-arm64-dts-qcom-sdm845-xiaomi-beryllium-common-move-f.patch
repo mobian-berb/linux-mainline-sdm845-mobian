@@ -8,7 +8,7 @@ Subject: [PATCH 40/79] arm64: dts: qcom: sdm845-xiaomi-beryllium-common: move
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-index 3097df6..5f9d82f 100644
+index 3097df6..5f9d82fc 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 @@ -122,7 +122,7 @@ vreg_s4a_1p8: vreg-s4a-1p8 {

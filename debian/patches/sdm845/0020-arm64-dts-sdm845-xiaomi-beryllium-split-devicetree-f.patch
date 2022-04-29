@@ -42,7 +42,7 @@ index 6b816eb..0cf5b9b 100644
  dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 new file mode 100644
-index 0000000..da74134
+index 00000000..da74134
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 @@ -0,0 +1,574 @@
@@ -622,7 +622,7 @@ index 0000000..da74134
 +};
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
 new file mode 100644
-index 0000000..6d3932a
+index 00000000..6d3932a
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
 @@ -0,0 +1,5 @@
@@ -633,7 +633,7 @@ index 0000000..6d3932a
 +#include "sdm845-xiaomi-beryllium-common.dtsi"
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
 new file mode 100644
-index 0000000..97bfc1c
+index 00000000..97bfc1c
 --- /dev/null
 +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
 @@ -0,0 +1,10 @@
@@ -649,7 +649,7 @@ index 0000000..97bfc1c
 +};
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
 deleted file mode 100644
-index 0be5db2..0000000
+index 0be5db2..00000000
 --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
 +++ /dev/null
 @@ -1,574 +0,0 @@

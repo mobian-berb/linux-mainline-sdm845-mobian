@@ -13,7 +13,7 @@ Subject: [PATCH 31/79] gpu: drm: panel: Add EBBG FT8719 panel driver
 
 diff --git a/Documentation/devicetree/bindings/display/panel/ebbg,ft8719.yaml b/Documentation/devicetree/bindings/display/panel/ebbg,ft8719.yaml
 new file mode 100644
-index 0000000..ab2105e
+index 00000000..ab2105e
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/display/panel/ebbg,ft8719.yaml
 @@ -0,0 +1,95 @@
@@ -148,7 +148,7 @@ index bca4cc1..2b147c6 100644
  obj-$(CONFIG_DRM_PANEL_FEIYANG_FY07024DI26A30D) += panel-feiyang-fy07024di26a30d.o
 diff --git a/drivers/gpu/drm/panel/panel-ebbg-ft8719.c b/drivers/gpu/drm/panel/panel-ebbg-ft8719.c
 new file mode 100644
-index 0000000..4dd7b10
+index 00000000..4dd7b10
 --- /dev/null
 +++ b/drivers/gpu/drm/panel/panel-ebbg-ft8719.c
 @@ -0,0 +1,586 @@

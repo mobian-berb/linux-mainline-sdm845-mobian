@@ -42,7 +42,7 @@ index c6eb08e..9d329de 100644
 +obj-$(CONFIG_CHARGER_QCOM_SMB2)	+= qcom_smb2.o
 diff --git a/drivers/power/supply/qcom_smb2.c b/drivers/power/supply/qcom_smb2.c
 new file mode 100644
-index 0000000..9f8eb52
+index 00000000..9f8eb52
 --- /dev/null
 +++ b/drivers/power/supply/qcom_smb2.c
 @@ -0,0 +1,1202 @@
@@ -1250,7 +1250,7 @@ index 0000000..9f8eb52
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/power/supply/qcom_spmi_pmic.h b/drivers/power/supply/qcom_spmi_pmic.h
 new file mode 100644
-index 0000000..7cad5658
+index 00000000..7cad5658
 --- /dev/null
 +++ b/drivers/power/supply/qcom_spmi_pmic.h
 @@ -0,0 +1,37 @@

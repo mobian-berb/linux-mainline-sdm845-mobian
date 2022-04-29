@@ -193,7 +193,7 @@ index 1cacc00..1e4a44b 100644
  		.of_match_table = pmic_spmi_id_table,
 diff --git a/include/soc/qcom/qcom-pmic.h b/include/soc/qcom/qcom-pmic.h
 new file mode 100644
-index 0000000..f76d089
+index 00000000..f76d089
 --- /dev/null
 +++ b/include/soc/qcom/qcom-pmic.h
 @@ -0,0 +1,51 @@
