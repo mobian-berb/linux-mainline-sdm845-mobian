@@ -9,10 +9,10 @@ Subject: [PATCH] arm64: configs: add sdm845_defconfig
 
 diff --git a/arch/arm64/configs/sdm845_defconfig b/arch/arm64/configs/sdm845_defconfig
 new file mode 100644
-index 0000000..4681dcf
+index 00000000..ee66e1c
 --- /dev/null
 +++ b/arch/arm64/configs/sdm845_defconfig
-@@ -0,0 +1,897 @@
+@@ -0,0 +1,896 @@
 +CONFIG_SYSVIPC=y
 +CONFIG_POSIX_MQUEUE=y
 +CONFIG_AUDIT=y
@@ -463,7 +463,6 @@ index 0000000..4681dcf
 +CONFIG_IPMI_HANDLER=m
 +CONFIG_IPMI_DEVICE_INTERFACE=m
 +CONFIG_IPMI_SI=m
-+# CONFIG_HW_RANDOM_CAVIUM is not set
 +CONFIG_I2C_CHARDEV=y
 +CONFIG_I2C_MUX=y
 +CONFIG_I2C_GPIO=m
@@ -574,6 +573,7 @@ index 0000000..4681dcf
 +CONFIG_SND_SOC=y
 +CONFIG_SND_SOC_QCOM=m
 +CONFIG_SND_SOC_APQ8016_SBC=m
++CONFIG_SND_SOC_QDSP6_Q6VOICE=m
 +CONFIG_SND_SOC_MSM8996=m
 +CONFIG_SND_SOC_SDM845=m
 +CONFIG_SND_SOC_DMIC=m
@@ -903,7 +903,6 @@ index 0000000..4681dcf
 +CONFIG_CMA_SIZE_MBYTES=32
 +CONFIG_IRQ_POLL=y
 +CONFIG_PRINTK_TIME=y
-+CONFIG_DEBUG_INFO=y
 +CONFIG_MAGIC_SYSRQ=y
 +# CONFIG_SCHED_DEBUG is not set
 +# CONFIG_DEBUG_PREEMPT is not set
