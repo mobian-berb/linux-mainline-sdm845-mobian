@@ -1,3 +1,9 @@
+linux-5.17-sdm845 (5.17.5+sdm845-5) unstable; urgency=medium
+
+  * d/patches: add missing option for audio enablement
+
+ -- Arnaud Ferraris <arnaud.ferraris@collabora.com>  Fri, 06 May 2022 16:03:52 +0200
+
 linux-5.17-sdm845 (5.17.5+sdm845-4) unstable; urgency=medium
 
   * d/patches: rebase on 5.17.5
