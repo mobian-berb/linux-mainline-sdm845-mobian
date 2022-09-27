@@ -1,0 +1,59 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Sat, 16 Oct 2021 17:16:53 +0100
+Subject: arm64: dts: sdm845-oneplus: enable pmi8998 charger
+
+Enable the smb2 charger to expose usb attach/detach events, charging
+stats etc.
+
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi   | 4 ++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 4 ++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 4 ++++
+ 3 files changed, 12 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 2187e24..3b6949d 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -467,6 +467,10 @@ &pmi8998_haptics {
+ 	qcom,wave-play-rate-us = <4255>;
+ };
+ 
++&pmi8998_charger {
++	status = "okay";
++};
++
+ &pmi8998_rradc {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index c6c4e58..fb676bc 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -35,6 +35,10 @@ &bq27441_fg {
+ 	monitored-battery = <&battery>;
+ };
+ 
++&pmi8998_charger {
++	monitored-battery = <&battery>;
++};
++
+ &i2c4 {
+ 	status = "okay";
+ 	clock-frequency = <400000>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+index 260c97e..4881336 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+@@ -57,6 +57,10 @@ codec {
+ 	};
+ };
+ 
++&pmi8998_charger {
++	monitored-battery = <&battery>;
++};
++
+ &rmi4_f12 {
+ 	touchscreen-y-mm = <148>;
+ };

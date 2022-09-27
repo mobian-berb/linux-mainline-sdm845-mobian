@@ -1,0 +1,24 @@
+From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Date: Sun, 28 Aug 2022 14:41:28 -0500
+Subject: dt-bindings: arm: qcom: Add Xiaomi Poco F1 EBBG variant bindings
+
+Add documentation for "xiaomi,beryllium-ebbg" device.
+
+Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index fb1d00b..6322ccb 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -667,6 +667,7 @@ properties:
+               - sony,apollo-row
+               - thundercomm,db845c
+               - xiaomi,beryllium
++              - xiaomi,beryllium-ebbg
+               - xiaomi,polaris
+           - const: qcom,sdm845
+ 

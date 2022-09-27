@@ -1,0 +1,33 @@
+From: Dylan Van Assche <me@dylanvanassche.be>
+Date: Sat, 2 Jul 2022 11:00:41 +0200
+Subject: sound: soc: codecs: wcd-mbhc-v2: expose ALSA control for jack
+
+Jack detection is currently fully functional via the input
+interface together with the multimedia buttons, but is not exposed
+as an ALSA control. Therefore, ALSA clients such as PulseAudio
+do not pick up the jack detection events as they only support
+one of the possible interface (ALSA control or input interface,
+but not both). Expose the jack events as a new ALSA control
+as well to provide ALSA clients both interfaces.
+
+Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
+---
+ sound/soc/codecs/wcd-mbhc-v2.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/sound/soc/codecs/wcd-mbhc-v2.c b/sound/soc/codecs/wcd-mbhc-v2.c
+index 98baef5..d819677 100644
+--- a/sound/soc/codecs/wcd-mbhc-v2.c
++++ b/sound/soc/codecs/wcd-mbhc-v2.c
+@@ -724,6 +724,11 @@ static int wcd_mbhc_initialise(struct wcd_mbhc *mbhc)
+ 
+ 	mutex_lock(&mbhc->lock);
+ 
++	/* expose ALSA control for jack detection */
++	ret = snd_jack_add_new_kctl (mbhc->jack->jack, "Headset Jack", WCD_MBHC_JACK_MASK);
++	if (ret)
++		dev_warn(component->dev, "failed creating Headset Jack kctl with err: %d\n", ret);
++
+ 	/* enable HS detection */
+ 	if (mbhc->mbhc_cb->hph_pull_up_control_v2)
+ 		mbhc->mbhc_cb->hph_pull_up_control_v2(component,
