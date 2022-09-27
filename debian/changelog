@@ -1,5 +1,5 @@
-linux-6.0-sdm845 (6.0~rc7+sdm845-1) UNRELEASED; urgency=medium
+linux-6.0-sdm845 (6.0~rc7+sdm845-1) unstable; urgency=medium
 
   * Initial 6.0 release
 
- -- Arnaud Ferraris <aferraris@debian.org>  Tue, 27 Sep 2022 21:59:57 +0200
+ -- Arnaud Ferraris <aferraris@debian.org>  Tue, 27 Sep 2022 22:01:21 +0200
