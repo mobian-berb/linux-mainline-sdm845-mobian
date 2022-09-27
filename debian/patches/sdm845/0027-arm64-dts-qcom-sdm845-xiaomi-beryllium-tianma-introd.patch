@@ -1,0 +1,37 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Mon, 6 Dec 2021 12:46:30 +0530
+Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium-tianma: introduce support
+ for touchscreen
+
+The Tianma variant uses the Novatek NT36xxx touchscreen driver.
+---
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts  | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+index 8e17611..678e0f5 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+@@ -13,3 +13,22 @@ &display_panel {
+ 	compatible = "tianma,fhd-video";
+ 	status = "okay";
+ };
++
++&i2c14 {
++	status = "okay";
++
++	dmas =  <&gpi_dma1 0 6 QCOM_GPI_I2C>,
++		<&gpi_dma1 1 6 QCOM_GPI_I2C>;
++	dma-names = "tx", "rx";
++
++	touchscreen: novatek@62 {
++		compatible = "novatek,nt36525"; /* Should be novatek,nt36672A instead #TODO */
++		reg = <0x62>;
++		vdd-supply = <&vreg_l14a_1p8>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <31 IRQ_TYPE_EDGE_RISING>;
++		reset-gpio = <&tlmm 32 0x00 /* GPIO_ACTIVE_HIGH */ >;
++	};
++
++};
++

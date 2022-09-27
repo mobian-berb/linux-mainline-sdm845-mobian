@@ -1,0 +1,24 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Mon, 30 May 2022 14:41:56 +0100
+Subject: arm64: dts: qcom: sdm845-shift-axolotl: set TS i2c bus clock
+
+Avoids the message "geni_i2c 894000.i2c: Bus frequency not specified, default to 100kHz."
+and sets a higher rate than the default for good responsiveness.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 682dd6c..100ecea 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -473,6 +473,7 @@ zap-shader {
+ 
+ &i2c5 {
+ 	status = "okay";
++	clock-frequency = <400000>;
+ 
+ 	touchscreen: focaltech@38 {
+ 		compatible = "focaltech,fts5452";

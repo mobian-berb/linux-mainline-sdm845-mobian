@@ -1,0 +1,56 @@
+From: MollySophia <mollysophia379@gmail.com>
+Date: Thu, 7 Jul 2022 16:53:05 +0800
+Subject: dt-bindings: display: panel: Add Novatek NT35596S panel bindings
+
+Add documentation for "novatek,nt35596s" panel.
+
+Signed-off-by: MollySophia <mollysophia379@gmail.com>
+---
+ .../bindings/display/panel/novatek,nt36672a.yaml   | 22 +++++++++++++---------
+ 1 file changed, 13 insertions(+), 9 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+index 41ee315..a5e0e6b 100644
+--- a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+@@ -20,14 +20,20 @@ allOf:
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - tianma,fhd-video
+-      - const: novatek,nt36672a
++    oneOf:
++      - items:
++          - enum:
++              - tianma,fhd-video
++          - const: novatek,nt36672a
++
++      - items:
++          - enum:
++              - jdi,fhd-nt35596s
++          - const: novatek,nt35596s
++
+     description: This indicates the panel manufacturer of the panel that is
+-      in turn using the NT36672A panel driver. This compatible string
+-      determines how the NT36672A panel driver is configured for the indicated
+-      panel. The novatek,nt36672a compatible shall always be provided as a fallback.
++      in turn using the NT36672A or the NT35596S panel driver. This compatible string
++      determines how the panel driver is configured for the indicated panel.
+ 
+   reset-gpios:
+     maxItems: 1
+@@ -74,7 +80,6 @@ examples:
+             vddpos-supply = <&lab>;
+             vddneg-supply = <&ibb>;
+ 
+-            backlight = <&pmi8998_wled>;
+             reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+ 
+             port {
+@@ -85,4 +90,3 @@ examples:
+         };
+     };
+ 
+-...

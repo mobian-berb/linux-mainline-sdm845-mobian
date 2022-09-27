@@ -1,0 +1,27 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Fri, 28 Jan 2022 21:14:07 +0000
+Subject: dts: arm64: qcom: sdm845-shift-axolotl: enable SLPI
+
+Enable the SLPI remoteproc on the SHIFT6mq
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 341ef1d..18a243f 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -500,6 +500,11 @@ &ipa {
+ 	firmware-name = "qcom/sdm845/axolotl/ipa_fws.mbn";
+ };
+ 
++&slpi_pas {
++	status = "okay";
++	firmware-name = "qcom/sdm845/axolotl/slpi.mbn";
++};
++
+ &mdss {
+ 	status = "okay";
+ };

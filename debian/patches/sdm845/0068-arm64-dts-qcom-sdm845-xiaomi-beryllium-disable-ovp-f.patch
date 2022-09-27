@@ -1,0 +1,25 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Mon, 23 May 2022 17:03:32 +0530
+Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium: disable ovp for lab
+ regulator
+
+In EBBG variant, the lab regulator's ovp get's triggered only once
+whenever the power button is pressed. Temporarily ignore the ovp
+till the cause is found.
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index 831377f..831f26c 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -304,7 +304,7 @@ &ibb {
+ &lab {
+ 	regulator-min-microvolt = <4600000>;
+ 	regulator-max-microvolt = <6000000>;
+-	regulator-over-current-protection;
++	// regulator-over-current-protection;
+ 	regulator-pull-down;
+ 	regulator-soft-start;
+ };

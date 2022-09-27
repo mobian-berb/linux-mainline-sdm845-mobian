@@ -1,0 +1,29 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Sat, 12 Jun 2021 14:09:57 +0100
+Subject: arm64: dts: qcom: sdm845-oneplus-common: add haptics
+
+Enable the pmi8998 SPMI haptics driver and configure the play rate for the
+hardware.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 392461c..5e0af3e 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -461,6 +461,12 @@ pinconf {
+ 	};
+ };
+ 
++&pmi8998_haptics {
++	status = "okay";
++
++	qcom,wave-play-rate-us = <4255>;
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };

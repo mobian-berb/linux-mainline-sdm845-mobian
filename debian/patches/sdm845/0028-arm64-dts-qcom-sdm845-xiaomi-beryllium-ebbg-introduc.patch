@@ -1,0 +1,104 @@
+From: Joel Selvaraj <jo@jsfamily.in>
+Date: Mon, 6 Dec 2021 12:46:14 +0530
+Subject: arm64: dts: qcom: sdm845-xiaomi-beryllium-ebbg: introduce support
+ for fts touchscreen
+
+The EBBG variant uses Focaltech touchscreen and ebbg panel.
+---
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts | 86 ++++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
+index 76931eb..ace48ac 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
+@@ -13,3 +13,89 @@ &display_panel {
+ 	compatible = "ebbg,ft8719";
+ 	status = "okay";
+ };
++
++&tlmm {
++	ts_mux {
++		ts_int_default: ts-int-default {
++			mux {
++				pins = "gpio31";
++				function = "gpio";
++			};
++
++			config {
++				pins = "gpio31";
++				drive-strength = <16>;
++				bias-pull-down;
++				input-enable;
++			};
++		};
++
++		ts_reset_default: ts-reset-default {
++			mux {
++				pins = "gpio32";
++				function = "gpio";
++			};
++
++			config {
++				pins = "gpio32";
++				drive-strength = <16>;
++				output-high;
++			};
++		};
++
++		ts_reset_sleep: ts-reset-sleep {
++			mux {
++				pins = "gpio32";
++				function = "gpio";
++			};
++
++			config {
++				pins = "gpio32";
++				drive-strength = <2>;
++				bias-disable;
++				output-low;
++			};
++		};
++
++		ts_int_sleep: ts-int-sleep {
++			mux {
++				pins = "gpio31";
++				function = "gpio";
++			};
++
++			config {
++				pins = "gpio31";
++				drive-strength = <2>;
++				bias-pull-down;
++				input-enable;
++			};
++		};
++	};
++};
++
++&i2c14 {
++	status = "okay";
++
++	dmas =  <&gpi_dma1 0 6 QCOM_GPI_I2C>,
++		<&gpi_dma1 1 6 QCOM_GPI_I2C>;
++	dma-names = "tx", "rx";
++
++	touchscreen: focaltech@38 {
++		compatible = "focaltech,fts8719";
++		reg = <0x38>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <31 IRQ_TYPE_EDGE_FALLING>;
++
++		vddio-supply = <&vreg_l14a_1p8>;
++
++		pinctrl-names = "default", "sleep";
++		pinctrl-0 = <&ts_int_default &ts_reset_default>;
++		pinctrl-1 = <&ts_int_sleep &ts_reset_sleep>;
++
++		reset-gpio = <&tlmm 32 GPIO_ACTIVE_LOW>;
++
++		touchscreen-size-x = <1080>;
++		touchscreen-size-y = <2246>;
++		focaltech,max-touch-number = <10>;
++	};
++};
