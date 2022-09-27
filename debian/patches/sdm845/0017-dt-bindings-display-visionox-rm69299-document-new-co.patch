@@ -1,0 +1,28 @@
+From: Caleb Connolly <caleb@connolly.tech>
+Date: Sun, 23 Jan 2022 17:37:41 +0000
+Subject: dt-bindings: display: visionox-rm69299: document new compatible
+ string
+
+Document a new compatible string for the second panel variant.
+
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
+index 076b057..b02ca75 100644
+--- a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
++++ b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
+@@ -17,7 +17,9 @@ allOf:
+ 
+ properties:
+   compatible:
+-    const: visionox,rm69299-1080p-display
++    enum:
++      - visionox,rm69299-1080p-display
++      - visionox,rm69299-shift
+ 
+   vdda-supply:
+     description: |

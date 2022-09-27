@@ -1,0 +1,73 @@
+From: Dylan Van Assche <me@dylanvanassche.be>
+Date: Sun, 5 Jun 2022 20:13:22 +0200
+Subject: arch: arm64: qcom: sdm845-shift-axolotl: fix Bluetooth firmware
+ loading
+
+Add hsuart0 alias, firmware name and prevent garbage data on Bluetooth UART lines
+on the SHIFT 6mq based on the Qualcomm SDM845 chip.
+I discovered that these were missing by comparing the DTS with similar
+devices such as the Oneplus 6/6T and Dragonboard 845c.
+
+Signed-of-by: Dylan Van Assche <me@dylanvanassche.be>
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 33 +++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 100ecea..d4eec99 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -24,6 +24,7 @@ / {
+ 
+ 	aliases {
+ 		display0 = &framebuffer0;
++		hsuart0 = &uart6;
+ 		serial0 = &uart9;
+ 	};
+ 
+@@ -622,6 +623,32 @@ dai@2 {
+ 	};
+ };
+ 
++/*
++ * Prevent garbage data on bluetooth UART lines
++ */
++&qup_uart6_default {
++        pinmux {
++                pins = "gpio45", "gpio46", "gpio47", "gpio48";
++                function = "qup6";
++        };
++
++        cts {
++                pins = "gpio45";
++                bias-pull-down;
++        };
++
++        rts-tx {
++                pins = "gpio46", "gpio47";
++                drive-strength = <2>;
++                bias-disable;
++        };
++
++        rx {
++                pins = "gpio48";
++                bias-pull-up;
++        };
++};
++
+ &qup_uart9_default {
+ 	pinconf-rx {
+ 		pins = "gpio5";
+@@ -847,6 +874,12 @@ &uart6 {
+ 	bluetooth {
+ 		compatible = "qcom,wcn3990-bt";
+ 
++		/*
++		 * This path is relative to the qca/
++		 * subdir under lib/firmware.
++		 */
++		firmware-name = "axolotl/crnv21.bin";
++
+ 		vddio-supply = <&vreg_s4a_1p8>;
+ 		vddxo-supply = <&vreg_l7a_1p8>;
+ 		vddrf-supply = <&vreg_l17a_1p3>;

@@ -1,0 +1,27 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Fri, 27 Aug 2021 15:44:59 +0100
+Subject: dts: arm64: qcom: sdm845-oneplus: enable slpi
+
+Enable the slpi remoteproc and specify the firmware path.
+
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 3b6949d..82bb750 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -429,6 +429,11 @@ &ipa {
+ 	firmware-name = "qcom/sdm845/oneplus6/ipa_fws.mbn";
+ };
+ 
++&slpi_pas {
++	status = "okay";
++	firmware-name = "qcom/sdm845/oneplus6/slpi.mbn";
++};
++
+ &mdss {
+ 	status = "okay";
+ };
