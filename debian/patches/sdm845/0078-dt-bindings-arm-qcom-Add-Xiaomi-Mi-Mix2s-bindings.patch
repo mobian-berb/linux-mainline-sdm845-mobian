@@ -1,0 +1,27 @@
+From: MollySophia <mollysophia379@gmail.com>
+Date: Thu, 7 Jul 2022 16:43:32 +0800
+Subject: dt-bindings: arm: qcom: Add Xiaomi Mi Mix2s bindings
+
+Add documentation for "xiaomi,polaris" device.
+
+Signed-off-by: MollySophia <mollysophia379@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 6322ccb..d3ca3d2 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -617,6 +617,11 @@ properties:
+               - xiaomi,lavender
+           - const: qcom,sdm660
+ 
++      - items:
++          - enum:
++              - xiaomi,polaris
++          - const: qcom,sdm845
++
+       - items:
+           - enum:
+               - qcom,sdx55-mtp

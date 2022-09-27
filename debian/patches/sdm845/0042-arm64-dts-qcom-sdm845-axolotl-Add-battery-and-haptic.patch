@@ -1,0 +1,55 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Tue, 30 Nov 2021 22:11:39 +0000
+Subject: arm64: dts: qcom: sdm845-axolotl: Add battery and haptics
+
+Add nodes for the battery and enable haptics.
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 83261c9..341ef1d 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -509,6 +509,12 @@ &mss_pil {
+ 	firmware-name = "qcom/sdm845/axolotl/mba.mbn", "qcom/sdm845/axolotl/modem.mbn";
+ };
+ 
++&pmi8998_fg {
++	status = "okay";
++	monitored-battery = <&battery>;
++	power-supplies = <&pmi8998_charger>;
++};
++
+ &pm8998_gpio {
+ 	volume_up_gpio: pm8998-gpio6-state {
+ 		pinconf {
+@@ -521,6 +527,12 @@ pinconf {
+ 	};
+ };
+ 
++&pmi8998_haptics {
++	status = "okay";
++
++	qcom,wave-play-rate-us = <4255>;
++};
++
+ &pm8998_pon {
+ 	volume_down_resin: resin {
+ 		compatible = "qcom,pm8941-resin";
+@@ -531,6 +543,15 @@ volume_down_resin: resin {
+ 	};
+ };
+ 
++&pmi8998_rradc {
++	status = "okay";
++};
++
++&pmi8998_charger {
++	status = "okay";
++	monitored-battery = <&battery>;
++};
++
+ &pmi8998_lpg {
+ 	status = "okay";
+ 
