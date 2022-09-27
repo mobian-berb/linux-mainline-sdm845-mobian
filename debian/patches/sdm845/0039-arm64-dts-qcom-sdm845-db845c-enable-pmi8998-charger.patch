@@ -1,0 +1,48 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Fri, 1 Apr 2022 21:07:20 +0100
+Subject: arm64: dts: qcom: sdm845-db845c: enable pmi8998 charger
+
+Enable the smb2 charger driver on the db845c and add a simple-battery
+node to report the correct VBAT voltage.
+
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index a3849f9..0c3b7d7 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -254,6 +254,18 @@ vph_pwr: vph-pwr-regulator {
+ 
+ 		vin-supply = <&vbat_som>;
+ 	};
++
++	/*
++	 * The db845c doesn't actually have a battery, but the charger circuitry
++	 * is still wired up to support one, it needs to be programmed for nominal
++	 * vbat voltage. See the vbat-regulator above.
++	 */
++	battery: battery {
++		compatible = "simple-battery";
++
++		voltage-min-design-microvolt = <4200000>;
++		voltage-max-design-microvolt = <4200000>;
++	};
+ };
+ 
+ &adsp_pas {
+@@ -653,6 +665,12 @@ led@5 {
+ 	};
+ };
+ 
++&pmi8998_charger {
++	status = "okay";
++
++	monitored-battery = <&battery>;
++};
++
+ /* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
+ &q6afedai {
+ 	qi2s@22 {

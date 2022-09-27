@@ -1,0 +1,26 @@
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Date: Mon, 21 Feb 2022 22:07:42 +0000
+Subject: arm64: dts: qcom: sdm845-db845c: enable rradc
+
+Enable the Round Robin ADC for the db845c.
+
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index c6e2c57..a3849f9 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -619,6 +619,10 @@ resin {
+ 	};
+ };
+ 
++&pmi8998_rradc {
++	status = "okay";
++};
++
+ &pmi8998_lpg {
+ 	status = "okay";
+ 
