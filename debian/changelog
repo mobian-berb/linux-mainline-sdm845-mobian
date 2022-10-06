@@ -1,3 +1,9 @@
+linux-5.19-sdm845 (5.19.14+sdm845-3) unstable; urgency=medium
+
+  * Rebase on 5.19.14
+
+ -- Arnaud Ferraris <aferraris@debian.org>  Thu, 06 Oct 2022 11:32:36 +0200
+
 linux-5.19-sdm845 (5.19.11+sdm845-2) unstable; urgency=medium
 
   * Rebase on 5.19.11
