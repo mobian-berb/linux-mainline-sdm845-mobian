@@ -1,0 +1,161 @@
+From: Dylan Van Assche <me@dylanvanassche.be>
+Date: Sat, 18 Jun 2022 20:38:15 +0200
+Subject: arch: arm64: qcom: sdm845-shift-axolotl: improve audio routing
+
+Audio on the SHIFT6mq needs to handle 3 microphones (internal bottom,
+internal back, and headset through jack) together with 3 speakers
+(earpiece, main speaker, and headset through jack). This requires
+multiple DAIs to route everything without conflicting with each other.
+
+This patch enables multiple MultiMedias for allowing capture and
+playback and routes them the WCD9340 codec properly so each microphone
+and speaker output has it own DAI link.
+
+Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 94 +++++++++++++++++++++--
+ 1 file changed, 89 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index b4c0255..8d41348 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -634,6 +634,18 @@ dai@1 {
+ 	dai@2 {
+ 		reg = <2>;
+ 	};
++
++	dai@3 {
++		reg = <3>;
++	};
++
++	dai@4 {
++		reg = <4>;
++	};
++
++	dai@5 {
++		reg = <5>;
++	};
+ };
+ 
+ /*
+@@ -693,7 +705,13 @@ &sound {
+ 	audio-routing = "RX_BIAS", "MCLK",
+ 			"AMIC1", "MIC BIAS1",
+ 			"AMIC2", "MIC BIAS2",
+-			"AMIC3", "MIC BIAS3";
++			"AMIC3", "MIC BIAS3",
++			"MM_DL1",  "MultiMedia1 Playback",
++			"MM_DL3",  "MultiMedia3 Playback",
++			"MM_DL5",  "MultiMedia5 Playback",
++			"MultiMedia2 Capture", "MM_UL2",
++			"MultiMedia4 Capture", "MM_UL4",
++			"MultiMedia6 Capture", "MM_UL6";
+ 
+ 	mm1-dai-link {
+ 		link-name = "MultiMedia1";
+@@ -716,6 +734,27 @@ cpu {
+ 		};
+ 	};
+ 
++	mm4-dai-link {
++		link-name = "MultiMedia4";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA4>;
++		};
++	};
++
++	mm5-dai-link {
++		link-name = "MultiMedia5";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA5>;
++		};
++	};
++
++	mm6-dai-link {
++		link-name = "MultiMedia6";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA6>;
++		};
++	};
++
+ 	speaker-dai-link {
+ 		link-name = "Speaker Playback";
+ 		codec {
+@@ -731,10 +770,25 @@ platform {
+ 		};
+ 	};
+ 
++	slimcap-wcd-dai-link {
++		link-name = "SLIM WCD Capture 1";
++		codec {
++			sound-dai = <&wcd9340 1>; /* AIF1_CAP */
++		};
++
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_1_TX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++	};
++
+ 	slim-dai-link {
+-		link-name = "SLIM Playback";
++		link-name = "SLIM WCD Playback 1";
+ 		codec {
+-			sound-dai = <&wcd9340 0>;
++			sound-dai = <&wcd9340 0>; /* AIF1_PB */
+ 		};
+ 
+ 		cpu {
+@@ -747,9 +801,9 @@ platform {
+ 	};
+ 
+ 	slimcap-dai-link {
+-		link-name = "SLIM Capture";
++		link-name = "SLIM WCD Capture 2";
+ 		codec {
+-			sound-dai = <&wcd9340 1>;
++			sound-dai = <&wcd9340 3>; /* AIF2_CAP */
+ 		};
+ 
+ 		cpu {
+@@ -761,6 +815,36 @@ platform {
+ 		};
+ 	};
+ 
++	slim-wcd-dai-link {
++		link-name = "SLIM WCD Playback 2";
++		codec {
++			sound-dai = <&wcd9340 2>; /* AIF2_PB */
++		};
++
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_1_RX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++	};
++
++	slimcap2-wcd-dai-link {
++		link-name = "SLIM WCD Capture 3";
++		codec {
++			sound-dai = <&wcd9340 5>; /* AIF3_CAP */
++		};
++
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_2_TX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++	};
++
+ 	voicemmode1-dai-link {
+ 		link-name = "VoiceMMode1";
+ 		cpu {
