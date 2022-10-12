@@ -1,3 +1,11 @@
+linux-6.0-sdm845 (6.0.1+sdm845-1) unstable; urgency=medium
+
+  * d/patches: reboot immediately on panic
+  * d/patches: import latest upstream patches
+  * Rebase on 6.0.1
+
+ -- Arnaud Ferraris <aferraris@debian.org>  Wed, 12 Oct 2022 23:11:02 +0200
+
 linux-6.0-sdm845 (6.0+sdm845-1) unstable; urgency=medium
 
   * Rebase on 6.0
