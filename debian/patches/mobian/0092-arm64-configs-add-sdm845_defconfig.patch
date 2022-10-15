@@ -3,16 +3,16 @@ Date: Mon, 26 Apr 2021 12:17:19 +0200
 Subject: [PATCH] arm64: configs: add sdm845_defconfig
 
 ---
- arch/arm64/configs/sdm845_defconfig | 894 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 894 insertions(+)
+ arch/arm64/configs/sdm845_defconfig | 895 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 895 insertions(+)
  create mode 100644 arch/arm64/configs/sdm845_defconfig
 
 diff --git a/arch/arm64/configs/sdm845_defconfig b/arch/arm64/configs/sdm845_defconfig
 new file mode 100644
-index 00000000..3f4e1ed
+index 00000000..983d14e5
 --- /dev/null
 +++ b/arch/arm64/configs/sdm845_defconfig
-@@ -0,0 +1,894 @@
+@@ -0,0 +1,895 @@
 +CONFIG_SYSVIPC=y
 +CONFIG_POSIX_MQUEUE=y
 +CONFIG_AUDIT=y
@@ -543,6 +543,7 @@ index 00000000..3f4e1ed
 +CONFIG_DRM_PANEL_INNOLUX_TD4328=y
 +CONFIG_DRM_PANEL_NOVATEK_NT36672A=y
 +CONFIG_DRM_PANEL_SAMSUNG_SOFEF00=y
++CONFIG_DRM_PANEL_SAMSUNG_S6E3FC2X01=y
 +CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA=m
 +CONFIG_DRM_PANEL_VISIONOX_RM69299=y
 +CONFIG_DRM_DISPLAY_CONNECTOR=m
