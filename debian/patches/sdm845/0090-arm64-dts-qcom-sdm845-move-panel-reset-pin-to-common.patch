@@ -1,0 +1,40 @@
+From: Nia Espera <a5b6@riseup.net>
+Date: Sat, 24 Sep 2022 00:15:37 +0200
+Subject: arm64: dts: qcom: sdm845: move panel reset pin to common dtsi for
+ oneplus 6/6t
+
+Since both OnePlus 6 and 6T panels are properly supported, the reset pin
+can be safely moved to the common dtsii
+
+Signed-off-by: Nia Espera <a5b6@riseup.net>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi   | 2 ++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 2 --
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 3056f39..47ed264 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -377,6 +377,8 @@ display_panel: panel@0 {
+ 
+ 		vddio-supply = <&vreg_l14a_1p88>;
+ 
++		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
++
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&panel_reset_pins &panel_te_pin &panel_esd_pin>;
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index 389a8c4..c2abc7b 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -28,8 +28,6 @@ &display_panel {
+ 	status = "okay";
+ 
+ 	compatible = "samsung,sofef00";
+-
+-	reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+ };
+ 
+ &bq27441_fg {

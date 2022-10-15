@@ -1,0 +1,75 @@
+From: Nia Espera <a5b6@riseup.net>
+Date: Sat, 24 Sep 2022 00:12:14 +0200
+Subject: drm/panel: sofef00: remove support for sofef00 driver on s6e3fc2x01
+ panel
+
+Removes functionality from sofef00 panel driver which allowed it to
+drive the s6e3fc2x01 panel
+
+Signed-off-by: Nia Espera <a5b6@riseup.net>
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ drivers/gpu/drm/panel/Kconfig                 |  6 +++---
+ drivers/gpu/drm/panel/panel-samsung-sofef00.c | 18 ------------------
+ 2 files changed, 3 insertions(+), 21 deletions(-)
+
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index 0dd5e1e..1addbd7 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -547,16 +547,16 @@ config DRM_PANEL_SAMSUNG_S6E8AA0
+ 	select VIDEOMODE_HELPERS
+ 
+ config DRM_PANEL_SAMSUNG_SOFEF00
+-	tristate "Samsung sofef00/s6e3fc2x01 OnePlus 6/6T DSI cmd mode panels"
++	tristate "Samsung sofef00 OnePlus 6 DSI cmd mode panel"
+ 	depends on OF
+ 	depends on DRM_MIPI_DSI
+ 	depends on BACKLIGHT_CLASS_DEVICE
+ 	select VIDEOMODE_HELPERS
+ 	help
+ 	  Say Y or M here if you want to enable support for the Samsung AMOLED
+-	  command mode panels found in the OnePlus 6/6T smartphones.
++	  command mode panel found in the OnePlus 6 smartphone.
+ 
+-	  The panels are 2280x1080@60Hz and 2340x1080@60Hz respectively
++	  The panel is 2280x1080@60Hz
+ 
+ config DRM_PANEL_SAMSUNG_S6E3FC2X01
+ 	tristate "Samsung s6e3fc2x01 OnePlus 6T DSI cmd mode panel"
+diff --git a/drivers/gpu/drm/panel/panel-samsung-sofef00.c b/drivers/gpu/drm/panel/panel-samsung-sofef00.c
+index bd02af8..68e58b9 100644
+--- a/drivers/gpu/drm/panel/panel-samsung-sofef00.c
++++ b/drivers/gpu/drm/panel/panel-samsung-sofef00.c
+@@ -181,20 +181,6 @@ static const struct drm_display_mode enchilada_panel_mode = {
+ 	.height_mm = 145,
+ };
+ 
+-static const struct drm_display_mode fajita_panel_mode = {
+-	.clock = (1080 + 72 + 16 + 36) * (2340 + 32 + 4 + 18) * 60 / 1000,
+-	.hdisplay = 1080,
+-	.hsync_start = 1080 + 72,
+-	.hsync_end = 1080 + 72 + 16,
+-	.htotal = 1080 + 72 + 16 + 36,
+-	.vdisplay = 2340,
+-	.vsync_start = 2340 + 32,
+-	.vsync_end = 2340 + 32 + 4,
+-	.vtotal = 2340 + 32 + 4 + 18,
+-	.width_mm = 68,
+-	.height_mm = 145,
+-};
+-
+ static int sofef00_panel_get_modes(struct drm_panel *panel, struct drm_connector *connector)
+ {
+ 	struct drm_display_mode *mode;
+@@ -327,10 +313,6 @@ static const struct of_device_id sofef00_panel_of_match[] = {
+ 		.compatible = "samsung,sofef00",
+ 		.data = &enchilada_panel_mode,
+ 	},
+-	{ // OnePlus 6T / fajita
+-		.compatible = "samsung,s6e3fc2x01",
+-		.data = &fajita_panel_mode,
+-	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, sofef00_panel_of_match);
