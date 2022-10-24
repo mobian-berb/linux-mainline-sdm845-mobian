@@ -61,7 +61,7 @@ Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
  1 file changed, 10 insertions(+), 3 deletions(-)
 
 diff --git a/sound/soc/codecs/wcd-mbhc-v2.c b/sound/soc/codecs/wcd-mbhc-v2.c
-index d819677..2e664fd 100644
+index 2033997..13c8521 100644
 --- a/sound/soc/codecs/wcd-mbhc-v2.c
 +++ b/sound/soc/codecs/wcd-mbhc-v2.c
 @@ -65,6 +65,7 @@ struct wcd_mbhc {
@@ -101,7 +101,7 @@ index d819677..2e664fd 100644
  		wcd_schedule_hs_detect_plug(mbhc, &mbhc->correct_plug_swch);
  	}
  }
-@@ -1238,8 +1242,10 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+@@ -1240,8 +1244,10 @@ static void wcd_correct_swch_plug(struct work_struct *work)
  		wcd_mbhc_adc_update_fsm_source(mbhc, plug_type);
  
  exit:
@@ -113,7 +113,7 @@ index d819677..2e664fd 100644
  
  	/*
  	 * If plug type is corrected from special headset to headphone,
-@@ -1467,6 +1473,7 @@ struct wcd_mbhc *wcd_mbhc_init(struct snd_soc_component *component,
+@@ -1469,6 +1475,7 @@ struct wcd_mbhc *wcd_mbhc_init(struct snd_soc_component *component,
  	mbhc->mbhc_cb = mbhc_cb;
  	mbhc->fields = fields;
  	mbhc->mbhc_detection_logic = WCD_DETECTION_ADC;

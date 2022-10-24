@@ -14,7 +14,7 @@ Signed-off-by: Caleb Connolly <caleb@connolly.tech>
  2 files changed, 3 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 0dd5e1e..1addbd7 100644
+index 678bc79..15d4008 100644
 --- a/drivers/gpu/drm/panel/Kconfig
 +++ b/drivers/gpu/drm/panel/Kconfig
 @@ -547,16 +547,16 @@ config DRM_PANEL_SAMSUNG_S6E8AA0

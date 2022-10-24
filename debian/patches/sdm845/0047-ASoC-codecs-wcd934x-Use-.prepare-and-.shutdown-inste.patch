@@ -11,11 +11,11 @@ q6voiced to open and prepare the q6voice virtual FE which in turn open and
 prepares the BE speaker and mic. So for now, contain the enabling and disabling
 of wcd934x as part of .prepare and .shutdown instead of .trigger.
 ---
- sound/soc/codecs/wcd934x.c | 41 +++++++++++++++++++++--------------------
- 1 file changed, 21 insertions(+), 20 deletions(-)
+ sound/soc/codecs/wcd934x.c | 39 ++++++++++++++++++++-------------------
+ 1 file changed, 20 insertions(+), 19 deletions(-)
 
 diff --git a/sound/soc/codecs/wcd934x.c b/sound/soc/codecs/wcd934x.c
-index f56907d..c07b899 100644
+index 28175c7..e85fc62 100644
 --- a/sound/soc/codecs/wcd934x.c
 +++ b/sound/soc/codecs/wcd934x.c
 @@ -1891,7 +1891,7 @@ static int wcd934x_hw_free(struct snd_pcm_substream *substream,
@@ -31,7 +31,8 @@ index f56907d..c07b899 100644
  	wcd = snd_soc_component_get_drvdata(dai->component);
  
  	dai_data = &wcd->dai[dai->id];
--
++	cfg = &dai_data->sconfig;
+ 
 -	switch (cmd) {
 -	case SNDRV_PCM_TRIGGER_START:
 -	case SNDRV_PCM_TRIGGER_RESUME:
@@ -43,14 +44,12 @@ index f56907d..c07b899 100644
 -	case SNDRV_PCM_TRIGGER_STOP:
 -	case SNDRV_PCM_TRIGGER_SUSPEND:
 -	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
--		slim_stream_unprepare(dai_data->sruntime);
 -		slim_stream_disable(dai_data->sruntime);
+-		slim_stream_unprepare(dai_data->sruntime);
 -		break;
 -	default:
 -		break;
 -	}
-+	cfg = &dai_data->sconfig;
-+	
 +	slim_stream_prepare(dai_data->sruntime, cfg);
 +	slim_stream_enable(dai_data->sruntime);
  
@@ -67,8 +66,8 @@ index f56907d..c07b899 100644
 +
 +	dai_data = &wcd->dai[dai->id];
 +
-+	slim_stream_unprepare(dai_data->sruntime);
 +	slim_stream_disable(dai_data->sruntime);
++	slim_stream_unprepare(dai_data->sruntime);
 +}
 +
  static int wcd934x_set_channel_map(struct snd_soc_dai *dai,

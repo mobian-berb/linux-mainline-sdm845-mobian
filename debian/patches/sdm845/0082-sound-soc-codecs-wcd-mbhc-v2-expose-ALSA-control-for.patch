@@ -16,10 +16,10 @@ Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
  1 file changed, 5 insertions(+)
 
 diff --git a/sound/soc/codecs/wcd-mbhc-v2.c b/sound/soc/codecs/wcd-mbhc-v2.c
-index 98baef5..d819677 100644
+index 3100928..2033997 100644
 --- a/sound/soc/codecs/wcd-mbhc-v2.c
 +++ b/sound/soc/codecs/wcd-mbhc-v2.c
-@@ -724,6 +724,11 @@ static int wcd_mbhc_initialise(struct wcd_mbhc *mbhc)
+@@ -725,6 +725,11 @@ static int wcd_mbhc_initialise(struct wcd_mbhc *mbhc)
  
  	mutex_lock(&mbhc->lock);
  

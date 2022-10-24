@@ -11,7 +11,7 @@ Signed-off-by: Teguh Sobirin <teguh@sobir.in>
  create mode 100644 drivers/gpu/drm/panel/panel-innolux-td4328.c
 
 diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index a9043ea..9a28112 100644
+index a582ddd..99e3010 100644
 --- a/drivers/gpu/drm/panel/Kconfig
 +++ b/drivers/gpu/drm/panel/Kconfig
 @@ -203,6 +203,15 @@ config DRM_PANEL_INNOLUX_P079ZCA

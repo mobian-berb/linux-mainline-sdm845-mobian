@@ -32,7 +32,7 @@ index 72b9654..45cae97 100644
  M:	Guido Günther <agx@sigxcpu.org>
  R:	Purism Kernel Team <kernel@puri.sm>
 diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 9a28112..0dd5e1e 100644
+index 99e3010..678bc79 100644
 --- a/drivers/gpu/drm/panel/Kconfig
 +++ b/drivers/gpu/drm/panel/Kconfig
 @@ -558,6 +558,18 @@ config DRM_PANEL_SAMSUNG_SOFEF00
