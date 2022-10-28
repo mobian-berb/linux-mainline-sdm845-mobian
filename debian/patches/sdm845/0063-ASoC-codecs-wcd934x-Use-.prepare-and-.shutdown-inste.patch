@@ -15,7 +15,7 @@ of wcd934x as part of .prepare and .shutdown instead of .trigger.
  1 file changed, 21 insertions(+), 20 deletions(-)
 
 diff --git a/sound/soc/codecs/wcd934x.c b/sound/soc/codecs/wcd934x.c
-index f56907d..c07b899 100644
+index 28175c7..e5ff730 100644
 --- a/sound/soc/codecs/wcd934x.c
 +++ b/sound/soc/codecs/wcd934x.c
 @@ -1891,7 +1891,7 @@ static int wcd934x_hw_free(struct snd_pcm_substream *substream,
@@ -43,8 +43,8 @@ index f56907d..c07b899 100644
 -	case SNDRV_PCM_TRIGGER_STOP:
 -	case SNDRV_PCM_TRIGGER_SUSPEND:
 -	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
--		slim_stream_unprepare(dai_data->sruntime);
 -		slim_stream_disable(dai_data->sruntime);
+-		slim_stream_unprepare(dai_data->sruntime);
 -		break;
 -	default:
 -		break;
@@ -67,8 +67,8 @@ index f56907d..c07b899 100644
 +
 +	dai_data = &wcd->dai[dai->id];
 +
-+	slim_stream_unprepare(dai_data->sruntime);
 +	slim_stream_disable(dai_data->sruntime);
++	slim_stream_unprepare(dai_data->sruntime);
 +}
 +
  static int wcd934x_set_channel_map(struct snd_soc_dai *dai,

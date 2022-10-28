@@ -26,7 +26,7 @@ During touchscreen suspend, the following errors occur and after which the touch
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/input/touchscreen/nt36xxx.c b/drivers/input/touchscreen/nt36xxx.c
-index a572d2b..671a42d 100644
+index a572d2b8..671a42d 100644
 --- a/drivers/input/touchscreen/nt36xxx.c
 +++ b/drivers/input/touchscreen/nt36xxx.c
 @@ -881,7 +881,7 @@ MODULE_DEVICE_TABLE(i2c, nt36xxx_i2c_ts_id);

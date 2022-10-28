@@ -68,7 +68,7 @@ index d8086e5..80b3c6ea 100644
  obj-$(CONFIG_TOUCHSCREEN_IPAQ_MICRO)	+= ipaq-micro-ts.o
 diff --git a/drivers/input/touchscreen/nt36xxx.c b/drivers/input/touchscreen/nt36xxx.c
 new file mode 100644
-index 00000000..a572d2b
+index 00000000..a572d2b8
 --- /dev/null
 +++ b/drivers/input/touchscreen/nt36xxx.c
 @@ -0,0 +1,894 @@
