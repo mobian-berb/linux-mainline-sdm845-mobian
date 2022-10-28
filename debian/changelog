@@ -1,3 +1,9 @@
+linux-5.19-sdm845 (5.19.17+sdm845-1) unstable; urgency=medium
+
+  * d/patches: rebase on 5.19.17
+
+ -- Arnaud Ferraris <aferraris@debian.org>  Fri, 28 Oct 2022 12:04:48 +0200
+
 linux-5.19-sdm845 (5.19.16+sdm845-1) unstable; urgency=medium
 
   * Rebase on 5.19.16
